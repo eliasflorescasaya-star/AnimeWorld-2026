@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piedra, Papel o Tijeras</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #1f2937, #0f172a);
+      color: #f8fafc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .game {
+      width: min(560px, calc(100vw - 24px));
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+    }
+    p {
+      margin: 0 0 24px;
+      color: #cbd5e1;
+    }
+    .choices {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 16px 22px;
+      color: #f8fafc;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      min-width: 120px;
+      background: #2563eb;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.22);
+    }
+    button:hover {
+      transform: translateY(-2px);
+      background: #1d4ed8;
+    }
+    .result-card {
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      color: #e2e8f0;
+    }
+    .result-card strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    .scoreboard {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-around;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: #cbd5e1;
+    }
+    .scoreboard div {
+      min-width: 120px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(148, 163, 184, 0.08);
+    }
+    .reset {
+      margin-top: 18px;
+      background: #10b981;
+    }
+    .reset:hover {
+      background: #0f766e;
+    }
+  </style>
+</head>
+<body>
+  <div class="game">
+    <h1>Piedra, Papel o Tijeras</h1>
+    <p>Elige tu jugada y compite contra la IA. El primero que llegue a 5 puntos gana.</p>
+    <div class="choices">
+      <button data-choice="piedra">🪨 Piedra</button>
+      <button data-choice="papel">📄 Papel</button>
+      <button data-choice="tijeras">✂️ Tijeras</button>
+    </div>
+    <div class="result-card">
+      <strong id="roundResult">Haz tu jugada.</strong>
+      <div id="details">La IA está lista para jugar.</div>
+    </div>
+    <div class="scoreboard">
+      <div><strong>Tú</strong><span id="playerScore">0</span></div>
+      <div><strong>IA</strong><span id="aiScore">0</span></div>
+      <div><strong>Empates</strong><span id="ties">0</span></div>
+    </div>
+    <button class="reset" id="resetBtn">Reiniciar partida</button>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('[data-choice]');
+    const roundResult = document.getElementById('roundResult');
+    const details = document.getElementById('details');
+    const playerScore = document.getElementById('playerScore');
+    const aiScore = document.getElementById('aiScore');
+    const ties = document.getElementById('ties');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const choices = ['piedra', 'papel', 'tijeras'];
+    const winMap = {
+      piedra: 'tijeras',
+      papel: 'piedra',
+      tijeras: 'papel'
+    };
+
+    let score = { player: 0, ai: 0, ties: 0 };
+
+    function getAiChoice() {
+      const index = Math.floor(Math.random() * choices.length);
+      return choices[index];
+    }
+
+    function formatChoice(choice) {
+      if (choice === 'piedra') return 'Piedra';
+      if (choice === 'papel') return 'Papel';
+      return 'Tijeras';
+    }
+
+    function playRound(playerChoice) {
+      const aiChoice = getAiChoice();
+      if (playerChoice === aiChoice) {
+        score.ties += 1;
+        roundResult.textContent = 'Empate';
+        details.textContent = `Ambos eligieron ${formatChoice(playerChoice)}.`;
+      } else if (winMap[playerChoice] === aiChoice) {
+        score.player += 1;
+        roundResult.textContent = '¡Ganaste esta ronda!';
+        details.textContent = `${formatChoice(playerChoice)} vence a ${formatChoice(aiChoice)}.`;
+      } else {
+        score.ai += 1;
+        roundResult.textContent = 'La IA gana esta ronda.';
+        details.textContent = `${formatChoice(aiChoice)} vence a ${formatChoice(playerChoice)}.`;
+      }
+      updateScoreboard();
+      checkVictory();
+    }
+
+    function updateScoreboard() {
+      playerScore.textContent = score.player;
+      aiScore.textContent = score.ai;
+      ties.textContent = score.ties;
+    }
+
+    function checkVictory() {
+      if (score.player >= 5 || score.ai >= 5) {
+        if (score.player >= 5) {
+          roundResult.textContent = '¡Felicidades! Ganaste la partida.';
+          details.textContent = `Resultado final: ${score.player} - ${score.ai} con ${score.ties} empates.`;
+        } else {
+          roundResult.textContent = 'Has perdido la partida contra la IA.';
+          details.textContent = `Resultado final: ${score.player} - ${score.ai} con ${score.ties} empates.`;
+        }
+        buttons.forEach(btn => btn.disabled = true);
+      }
+    }
+
+    function resetGame() {
+      score = { player: 0, ai: 0, ties: 0 };
+      updateScoreboard();
+      roundResult.textContent = 'Haz tu jugada.';
+      details.textContent = 'La IA está lista para jugar.';
+      buttons.forEach(btn => btn.disabled = false);
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => playRound(button.dataset.choice));
+    });
+    resetBtn.addEventListener('click', resetGame);
+  </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hollow Knight Lite</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #2a3545, #090b12 60%);
+      color: #e2e8f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .game-shell {
+      width: min(960px, calc(100vw - 24px));
+      border-radius: 24px;
+      background: rgba(10, 16, 31, 0.95);
+      border: 2px solid rgba(148, 163, 184, 0.16);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+    }
+    header {
+      padding: 18px 24px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+    }
+    header .info {
+      color: #94a3b8;
+      text-align: right;
+      font-size: 0.95rem;
+    }
+    #gameCanvas {
+      display: block;
+      width: 100%;
+      background: linear-gradient(180deg, #161b2c 0%, #090b12 70%, #050608 100%);
+    }
+    .instructions {
+      padding: 16px 24px 24px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+    .instructions strong {
+      color: #f8fafc;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-shell">
+    <header>
+      <div>
+        <h1>Hollow Knight Lite</h1>
+        <div class="info">Juega con las flechas o A/D para moverte, W o espacio para saltar.</div>
+      </div>
+      <div class="info" id="status">Estado: Cargando...</div>
+    </header>
+    <canvas id="gameCanvas" width="960" height="560"></canvas>
+    <div class="instructions">
+      <p><strong>Objetivo:</strong> recoge la orbe brillante y evita a los enemigos.</p>
+      <p><strong>Controles:</strong> izquierda/derecha para moverte, salto para saltar, pantalla para reiniciar.</p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const status = document.getElementById('status');
+
+    const keys = new Set();
+    const GRAVITY = 0.6;
+    const FRICTION = 0.92;
+    const PLAYER_SPEED = 3.6;
+    const JUMP_POWER = 13;
+
+    let gameActive = true;
+    let messageTimer = 0;
+    let gameMessage = 'Explora y gana la orbe.';
+
+    const player = {
+      x: 100,
+      y: 420,
+      width: 36,
+      height: 46,
+      vx: 0,
+      vy: 0,
+      onGround: false,
+      facing: 1
+    };
+
+    const orbe = { x: 820, y: 120, radius: 14, collected: false };
+
+    const enemies = [
+      { x: 420, y: 440, width: 36, height: 36, vx: 1.6, minX: 380, maxX: 520 },
+      { x: 640, y: 310, width: 34, height: 34, vx: 1.8, minX: 610, maxX: 720 }
+    ];
+
+    const platforms = [
+      { x: 0, y: 500, width: 960, height: 60 },
+      { x: 300, y: 380, width: 180, height: 22 },
+      { x: 520, y: 260, width: 210, height: 22 },
+      { x: 780, y: 430, width: 140, height: 22 },
+      { x: 120, y: 300, width: 140, height: 22 }
+    ];
+
+    function resetGame() {
+      player.x = 100;
+      player.y = 420;
+      player.vx = 0;
+      player.vy = 0;
+      player.onGround = false;
+      orbe.collected = false;
+      enemies[0].x = 420;
+      enemies[0].vx = 1.6;
+      enemies[1].x = 640;
+      enemies[1].vx = 1.8;
+      gameActive = true;
+      gameMessage = 'Explora y gana la orbe.';
+      messageTimer = 0;
+    }
+
+    function drawBackground() {
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, '#101525');
+      gradient.addColorStop(0.4, '#151f35');
+      gradient.addColorStop(1, '#090b12');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'rgba(140, 180, 240, 0.06)';
+      for (let i = 0; i < 50; i++) {
+        ctx.beginPath();
+        const cx = 80 + (i * 16) % canvas.width;
+        const cy = 40 + (i * 12);
+        ctx.arc(cx, cy, 2.2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function drawPlatform(platform) {
+      ctx.fillStyle = '#2f3b53';
+      ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
+      ctx.strokeStyle = '#50607f';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(platform.x, platform.y, platform.width, platform.height);
+    }
+
+    function drawPlayer() {
+      ctx.save();
+      ctx.translate(player.x + player.width / 2, player.y + player.height / 2);
+      ctx.scale(player.facing, 1);
+      ctx.fillStyle = '#f8fafc';
+      ctx.beginPath();
+      ctx.arc(-2, -12, 16, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#0f172a';
+      ctx.beginPath();
+      ctx.moveTo(-22, -10);
+      ctx.lineTo(16, -14);
+      ctx.lineTo(22, -6);
+      ctx.lineTo(-18, 10);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawOrb() {
+      if (orbe.collected) return;
+      ctx.save();
+      ctx.shadowColor = 'rgba(104, 188, 255, 0.8)';
+      ctx.shadowBlur = 18;
+      ctx.fillStyle = '#8be5ff';
+      ctx.beginPath();
+      ctx.arc(orbe.x, orbe.y, orbe.radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawEnemy(enemy) {
+      ctx.fillStyle = '#ed64a6';
+      ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+      ctx.fillStyle = '#1f2937';
+      ctx.fillRect(enemy.x + 8, enemy.y + 10, 6, 6);
+      ctx.fillRect(enemy.x + enemy.width - 14, enemy.y + 10, 6, 6);
+    }
+
+    function drawHUD() {
+      ctx.fillStyle = '#cbd5e1';
+      ctx.font = '18px Segoe UI';
+      ctx.fillText('Orbe: ' + (orbe.collected ? 'Recogida' : 'Pendiente'), 16, 30);
+      ctx.fillText('Flecha arriba / espacio = salto', 16, 54);
+      ctx.fillText('Pulsa R para reiniciar', 16, 78);
+    }
+
+    function updatePlayer() {
+      if (!gameActive) return;
+      if (keys.has('ArrowLeft') || keys.has('a') || keys.has('A')) {
+        player.vx = Math.max(player.vx - 0.45, -PLAYER_SPEED);
+        player.facing = -1;
+      }
+      if (keys.has('ArrowRight') || keys.has('d') || keys.has('D')) {
+        player.vx = Math.min(player.vx + 0.45, PLAYER_SPEED);
+        player.facing = 1;
+      }
+      if (!(keys.has('ArrowLeft') || keys.has('a') || keys.has('A')) && !(keys.has('ArrowRight') || keys.has('d') || keys.has('D'))) {
+        player.vx *= FRICTION;
+        if (Math.abs(player.vx) < 0.12) player.vx = 0;
+      }
+      if ((keys.has('ArrowUp') || keys.has('w') || keys.has('W') || keys.has(' ')) && player.onGround) {
+        player.vy = -JUMP_POWER;
+        player.onGround = false;
+      }
+
+      player.vy += GRAVITY;
+      player.x += player.vx;
+      player.y += player.vy;
+
+      if (player.x < 0) player.x = 0;
+      if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+      if (player.y > canvas.height) {
+        player.y = 520;
+        player.vy = 0;
+      }
+
+      player.onGround = false;
+      platforms.forEach(platform => {
+        if (player.x < platform.x + platform.width && player.x + player.width > platform.x &&
+            player.y < platform.y + platform.height && player.y + player.height > platform.y) {
+          if (player.vy > 0 && player.y + player.height - player.vy <= platform.y) {
+            player.y = platform.y - player.height;
+            player.vy = 0;
+            player.onGround = true;
+          }
+        }
+      });
+    }
+
+    function updateEnemies() {
+      enemies.forEach(enemy => {
+        enemy.x += enemy.vx;
+        if (enemy.x < enemy.minX || enemy.x + enemy.width > enemy.maxX) {
+          enemy.vx *= -1;
+        }
+      });
+    }
+
+    function checkCollisions() {
+      if (!orbe.collected) {
+        const dx = player.x + player.width / 2 - orbe.x;
+        const dy = player.y + player.height / 2 - orbe.y;
+        if (Math.hypot(dx, dy) < orbe.radius + 18) {
+          orbe.collected = true;
+          gameMessage = '¡Orbe recogida! Has ganado.';
+          gameActive = false;
+          messageTimer = 180;
+        }
+      }
+      enemies.forEach(enemy => {
+        if (player.x < enemy.x + enemy.width && player.x + player.width > enemy.x &&
+            player.y < enemy.y + enemy.height && player.y + player.height > enemy.y) {
+          gameMessage = 'Has sido golpeado. Pulsa R para reiniciar.';
+          gameActive = false;
+          messageTimer = 180;
+        }
+      });
+    }
+
+    function drawMessage() {
+      if (messageTimer > 0) {
+        messageTimer -= 1;
+      }
+      ctx.fillStyle = '#b9d6ff';
+      ctx.font = '20px Segoe UI';
+      ctx.textAlign = 'center';
+      ctx.fillText(gameMessage, canvas.width / 2, 40);
+      ctx.textAlign = 'left';
+      status.textContent = 'Estado: ' + gameMessage;
+    }
+
+    function gameLoop() {
+      drawBackground();
+      platforms.forEach(drawPlatform);
+      drawOrb();
+      drawPlayer();
+      enemies.forEach(drawEnemy);
+      drawHUD();
+      if (gameActive) {
+        updatePlayer();
+        updateEnemies();
+        checkCollisions();
+      }
+      drawMessage();
+      requestAnimationFrame(gameLoop);
+    }
+
+    window.addEventListener('keydown', event => {
+      keys.add(event.key);
+      if (event.key === 'r' || event.key === 'R') {
+        resetGame();
+      }
+    });
+    window.addEventListener('keyup', event => {
+      keys.delete(event.key);
+    });
+
+    resetGame();
+    gameLoop();
+  </script>
+</body>
+</html>

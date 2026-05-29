@@ -1,0 +1,10 @@
+videos/
+sonidos/
+gifs/
+
+*.pdf
+*.mp4
+*.mp3
+*.wav
+*.avi
+*.mkv

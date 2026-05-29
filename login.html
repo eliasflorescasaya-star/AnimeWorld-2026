@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>Iniciar Sesión - Anime World</title>
+</head>
+
+<body style="
+background:url('imagenes/fondo.jpg') center/cover fixed;
+font-family:Arial,sans-serif;
+margin:0;
+color:white;">
+
+<div style="
+background-color:rgba(0,0,0,0.7);
+width:450px;
+margin:auto;
+margin-top:100px;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0px 0px 20px #4da6ff;">
+
+<h1 style="color:#4da6ff;">
+🔐 Iniciar Sesión
+</h1>
+
+<form action="php/login.php" method="POST">
+
+<input
+type="text"
+name="usuario"
+placeholder="👤 Usuario"
+required
+style="
+padding:12px;
+width:250px;
+border-radius:15px;
+border:none;">
+
+<br><br>
+
+<input
+type="password"
+name="contrasena"
+placeholder="🔒 Contraseña"
+required
+style="
+padding:12px;
+width:250px;
+border-radius:15px;
+border:none;">
+
+<br><br>
+
+<input
+type="submit"
+value="Entrar"
+style="
+padding:12px;
+width:150px;
+border:none;
+border-radius:20px;
+background:#4da6ff;
+color:white;
+cursor:pointer;">
+
+</form>
+
+<br>
+
+<a href="registro.html">
+<button>
+🌸 Crear cuenta
+</button>
+</a>
+
+<br><br>
+
+<a href="cuenta.html">
+<button>
+⬅ Volver
+</button>
+</a>
+
+</div>
+
+</body>
+</html>

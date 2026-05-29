@@ -1,0 +1,37 @@
+body{
+
+background:
+url("../imagenes/solofondo.jpg")
+center/cover fixed;
+
+font-family:Arial;
+color:white;
+margin:0;
+}
+
+.contenedor{
+
+background-color:rgba(0,0,0,0.7);
+
+width:85%;
+
+margin:auto;
+
+padding:30px;
+
+border-radius:20px;
+
+margin-top:30px;
+}
+
+.titulo{
+
+text-align:center;
+
+text-shadow:0 0 15px #0066ff;
+}
+
+.subtitulo{
+
+text-align:center;
+}

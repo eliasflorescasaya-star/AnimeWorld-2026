@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>Crear Cuenta - Anime World</title>
+</head>
+
+<body style="
+background:url('imagenes/fondo.jpg') center/cover fixed;
+font-family:Arial;
+color:white;">
+
+<div style="
+background-color:rgba(0,0,0,0.7);
+width:400px;
+margin:auto;
+margin-top:70px;
+padding:20px;
+border-radius:20px;
+text-align:center;">
+
+<h1>🌸 Crear Cuenta 🌸</h1>
+
+<form action="php/guardarusuario.php" method="POST">
+
+<input
+type="text"
+name="usuario"
+placeholder="👤 Usuario"
+required>
+
+<br><br>
+
+<input
+type="email"
+name="correo"
+placeholder="📧 Correo"
+required>
+
+<br><br>
+
+<input
+type="password"
+name="contrasena"
+placeholder="🔒 Contraseña"
+required>
+
+<br><br>
+
+<input
+type="password"
+name="confirmar"
+placeholder="🔒 Confirmar contraseña"
+required>
+
+<br><br>
+
+<input
+type="submit"
+value="Crear cuenta">
+
+</form>
+
+<br>
+
+<a href="cuenta.html">
+
+<button>
+
+⬅ Volver
+
+</button>
+
+</a>
+
+</div>
+
+</body>
+</html>

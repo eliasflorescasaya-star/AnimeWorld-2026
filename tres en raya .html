@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tres en Raya</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #4b6cb7, #182848);
+      color: #f9f9f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      width: min(520px, calc(100vw - 24px));
+      text-align: center;
+      padding: 24px;
+      background: rgba(15, 23, 42, 0.92);
+      border-radius: 24px;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.35);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+    p {
+      margin: 0 0 24px;
+      color: #cbd5e1;
+    }
+    .status {
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #f8fafc;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .cell {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #1f2937, #111827);
+      box-shadow: inset 4px 4px 12px rgba(0,0,0,.35), inset -4px -4px 12px rgba(255,255,255,.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease;
+      user-select: none;
+    }
+    .cell:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(145deg, #273449, #0f172a);
+    }
+    .cell.disabled {
+      pointer-events: none;
+      opacity: 0.8;
+      cursor: default;
+    }
+    .controls {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background .15s ease, transform .15s ease;
+    }
+    button:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tres en Raya</h1>
+    <p>Juega con X y O. El primer jugador en lograr 3 en línea gana.</p>
+    <div class="status" id="status">Turno de X</div>
+    <div class="board" id="board">
+      <div class="cell" data-index="0"></div>
+      <div class="cell" data-index="1"></div>
+      <div class="cell" data-index="2"></div>
+      <div class="cell" data-index="3"></div>
+      <div class="cell" data-index="4"></div>
+      <div class="cell" data-index="5"></div>
+      <div class="cell" data-index="6"></div>
+      <div class="cell" data-index="7"></div>
+      <div class="cell" data-index="8"></div>
+    </div>
+    <div class="controls">
+      <button id="restart">Reiniciar juego</button>
+    </div>
+  </div>
+  <script>
+    const board = Array(9).fill('');
+    let currentPlayer = 'X';
+    let gameActive = true;
+    const winningLines = [
+      [0,1,2], [3,4,5], [6,7,8],
+      [0,3,6], [1,4,7], [2,5,8],
+      [0,4,8], [2,4,6]
+    ];
+    const statusDisplay = document.getElementById('status');
+    const cells = document.querySelectorAll('.cell');
+    const restartButton = document.getElementById('restart');
+
+    function updateStatus(message) {
+      statusDisplay.textContent = message;
+    }
+
+    function handleCellClick(event) {
+      const cell = event.target;
+      const index = Number(cell.dataset.index);
+
+      if (board[index] !== '' || !gameActive) return;
+
+      board[index] = currentPlayer;
+      cell.textContent = currentPlayer;
+      cell.classList.add('disabled');
+
+      if (checkWinner()) {
+        updateStatus(`¡Gana ${currentPlayer}!`);
+        gameActive = false;
+        return;
+      }
+
+      if (board.every(cell => cell !== '')) {
+        updateStatus('Empate. Intenta otra vez.');
+        gameActive = false;
+        return;
+      }
+
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      updateStatus(`Turno de ${currentPlayer}`);
+    }
+
+    function checkWinner() {
+      return winningLines.some(line => {
+        const [a, b, c] = line;
+        return board[a] === currentPlayer && board[b] === currentPlayer && board[c] === currentPlayer;
+      });
+    }
+
+    function resetGame() {
+      board.fill('');
+      gameActive = true;
+      currentPlayer = 'X';
+      cells.forEach(cell => {
+        cell.textContent = '';
+        cell.classList.remove('disabled');
+      });
+      updateStatus('Turno de X');
+    }
+
+    cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+    restartButton.addEventListener('click', resetGame);
+  </script>
+</body>
+</html>

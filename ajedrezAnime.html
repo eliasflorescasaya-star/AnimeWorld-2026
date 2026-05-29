@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajedrez Anime</title>
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+    color:white;
+}
+
+.chessboard{
+    display:grid;
+    grid-template-columns:repeat(8,60px);
+    border:2px solid #000;
+}
+
+.square{
+    width:60px;
+    height:60px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.white{ background:#f0d9b5; }
+.black{ background:#b58863; }
+
+.selected{ background:yellow !important; }
+
+img{
+    width:50px;
+    height:50px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Ajedrez Anime</h1>
+<div id="turn">Turno: Blanco</div>
+
+<div class="chessboard" id="chessboard"></div>
+<script>
+
+const pieceImages = {
+'♜':'imagenes/akatsuki2.jfif',
+'♞':'imagenes/uchiha sasuke.jfif',
+'♝':'imagenes/levi.jfif',
+'♛':'imagenes/rem4.jfif',
+'♚':'imagenes/subaru2.jfif',
+'♟':'imagenes/naruto3.1.jfif',
+
+'♖':'imagenes/Gojo Satoru.jfif',
+'♘':'imagenes/Eren jaeger _ ICONS.jfif',
+'♗':'imagenes/Light Yagami Icon.jfif',
+'♕':'imagenes/emilia.png',
+'♔':'imagenes/subaru.jfif',
+'♙':'imagenes/Naruto Uzumaki - Naruto.jfif'
+};
+
+let board = [
+['♜','♞','♝','♛','♚','♝','♞','♜'],
+['♟','♟','♟','♟','♟','♟','♟','♟'],
+['','','','','','','',''],
+['','','','','','','',''],
+['','','','','','','',''],
+['','','','','','','',''],
+['♙','♙','♙','♙','♙','♙','♙','♙'],
+['♖','♘','♗','♕','♔','♗','♘','♖']
+];
+
+let selected = null;
+let turn = "white";
+
+const chessboard = document.getElementById("chessboard");
+
+/* ===================== UTIL ===================== */
+
+function isWhite(piece){
+    return ['♖','♘','♗','♕','♔','♙'].includes(piece);
+}
+
+function cloneBoard(b){
+    return b.map(r => [...r]);
+}
+
+/* ===================== CAMINO LIBRE ===================== */
+
+function pathClear(fromR,fromC,toR,toC){
+
+    let rStep = Math.sign(toR-fromR);
+    let cStep = Math.sign(toC-fromC);
+
+    let r = fromR + rStep;
+    let c = fromC + cStep;
+
+    while(r !== toR || c !== toC){
+        if(board[r][c] !== "") return false;
+        r += rStep;
+        c += cStep;
+    }
+    return true;
+}
+
+/* ===================== SIMULACIÓN ===================== */
+
+function movePiece(fromR,fromC,toR,toC,tempBoard){
+
+    tempBoard[toR][toC] = tempBoard[fromR][fromC];
+    tempBoard[fromR][fromC] = "";
+}
+
+/* ===================== REY EN JAQUE ===================== */
+
+function findKing(b,isWhiteTurn){
+
+    const king = isWhiteTurn ? '♔' : '♚';
+
+    for(let r=0;r<8;r++){
+        for(let c=0;c<8;c++){
+            if(b[r][c] === king){
+                return {r,c};
+            }
+        }
+    }
+    return null;
+}
+
+function isInCheck(b,isWhiteTurn){
+
+    const kingPos = findKing(b,isWhiteTurn);
+    if(!kingPos) return false;
+
+    for(let r=0;r<8;r++){
+        for(let c=0;c<8;c++){
+
+            let piece = b[r][c];
+            if(piece === "") continue;
+
+            if(isWhite(piece) !== isWhiteTurn){
+
+                if(simpleValid(piece,r,c,kingPos.r,kingPos.c,b)){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+/* ===================== VALIDACIÓN BÁSICA ===================== */
+
+function simpleValid(piece,fr,fc,tr,tc,b){
+
+    const target = b[tr][tc];
+    let dr = tr-fr;
+    let dc = tc-fc;
+
+    if(target !== "" && isWhite(piece) === isWhite(target)) return false;
+
+    switch(piece){
+
+        case '♖': case '♜':
+            return (fr===tr || fc===tc);
+
+        case '♗': case '♝':
+            return Math.abs(dr)===Math.abs(dc);
+
+        case '♕': case '♛':
+            return (fr===tr || fc===tc || Math.abs(dr)===Math.abs(dc));
+
+        case '♘': case '♞':
+            return (Math.abs(dr)===2 && Math.abs(dc)===1) ||
+                   (Math.abs(dr)===1 && Math.abs(dc)===2);
+
+        case '♙':
+            return dc===0 && dr===-1;
+
+        case '♟':
+            return dc===0 && dr===1;
+
+        case '♔': case '♚':
+            return Math.abs(dr)<=1 && Math.abs(dc)<=1;
+    }
+
+    return false;
+}
+
+/* ===================== VALIDACIÓN REAL ===================== */
+
+function validMove(piece,fr,fc,tr,tc){
+
+    const temp = cloneBoard(board);
+
+    if(piece === "" ) return false;
+
+    if(piece.includes('♖')||piece.includes('♗')||piece.includes('♕')||piece.includes('♜')||piece.includes('♝')||piece.includes('♛')){
+        if(!pathClear(fr,fc,tr,tc)) return false;
+    }
+
+    if(!simpleValid(piece,fr,fc,tr,tc,board)) return false;
+
+    movePiece(fr,fc,tr,tc,temp);
+
+    if(isInCheck(temp,isWhite(piece))){
+        return false;
+    }
+
+    return true;
+}
+
+/* ===================== MOVIMIENTO ===================== */
+
+function handleClick(e){
+
+    const sq = e.currentTarget;
+    const r = +sq.dataset.row;
+    const c = +sq.dataset.col;
+
+    if(selected){
+
+        const {r:fr,c:fc} = selected;
+        const piece = board[fr][fc];
+
+        if(validMove(piece,fr,fc,r,c)){
+
+            board[r][c] = piece;
+            board[fr][fc] = "";
+
+            // PROMOCIÓN PEÓN
+            if(piece === '♙' && r === 0) board[r][c] = '♕';
+            if(piece === '♟' && r === 7) board[r][c] = '♛';
+
+            turn = turn === "white" ? "black":"white";
+
+            if(isInCheck(board,turn)){
+                alert("¡JAQUE!");
+            }
+
+        }
+
+        selected.element.classList.remove("selected");
+        selected = null;
+
+        draw();
+        return;
+    }
+
+    if(board[r][c] !== "" && isWhite(board[r][c]) === (turn==="white")){
+
+        selected = {r,c,element:sq};
+        sq.classList.add("selected");
+    }
+}
+
+/* ===================== DIBUJAR ===================== */
+
+function draw(){
+
+    chessboard.innerHTML = "";
+
+    for(let r=0;r<8;r++){
+        for(let c=0;c<8;c++){
+
+            const sq = document.createElement("div");
+            sq.className = "square " + ((r+c)%2?"black":"white");
+            sq.dataset.row = r;
+            sq.dataset.col = c;
+
+            if(board[r][c] !== ""){
+                const img = document.createElement("img");
+                img.src = pieceImages[board[r][c]];
+                sq.appendChild(img);
+            }
+
+            sq.addEventListener("click",handleClick);
+            chessboard.appendChild(sq);
+        }
+    }
+}
+
+draw();
+
+</script>
+
+
+
+
+</body>
+</html>

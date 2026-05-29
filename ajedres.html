@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajedrez contra IA</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #29323c, #0f172a);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #e2e8f0;
+    }
+    .panel {
+      width: min(940px, calc(100vw - 24px));
+      padding: 20px;
+      border-radius: 24px;
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      text-align: center;
+    }
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .status {
+      flex: 1 1 240px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(30, 41, 59, 0.95);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      font-weight: 600;
+      min-width: 220px;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+      flex: 1 1 240px;
+    }
+    .controls button,
+    .controls input {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      background: #2563eb;
+      color: #fff;
+      cursor: pointer;
+    }
+    .controls input[type="range"] {
+      min-width: 180px;
+      padding: 0 10px;
+      background: transparent;
+      accent-color: #2563eb;
+      cursor: pointer;
+    }
+    .controls label {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 2px;
+      max-width: 760px;
+      margin: 0 auto;
+      background: #111827;
+      border: 4px solid rgba(148,163,184,0.15);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .square {
+      width: 100%;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .square:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+    .light {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .dark {
+      background: #475569;
+      color: #f8fafc;
+    }
+    .selected {
+      outline: 3px solid #fbbf24;
+      outline-offset: -3px;
+    }
+    .legal {
+      box-shadow: inset 0 0 0 3px rgba(59,130,246,0.55);
+    }
+    .footer {
+      margin-top: 16px;
+      color: #94a3b8;
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    @media (max-width: 760px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .controls {
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h1>Ajedrez contra IA</h1>
+    <div class="top-bar">
+      <div class="status" id="status">Haz click en una pieza blanca para mover.</div>
+      <div class="controls">
+        <button id="resetBtn">Reiniciar juego</button>
+        <label>IA dificultad: <span id="difficultyValue">2</span>
+          <input id="difficultyRange" type="range" min="1" max="4" value="2">
+        </label>
+      </div>
+    </div>
+    <div class="board" id="board"></div>
+    <div class="footer">Jugador: Blancas (X) · IA: Negras (O). Promoción automática a dama.</div>
+  </div>
+
+  <script>
+    const initialBoard = [
+      'r','n','b','q','k','b','n','r',
+      'p','p','p','p','p','p','p','p',
+      '','','','','','','','',
+      '','','','','','','','',
+      '','','','','','','','',
+      '','','','','','','','',
+      'P','P','P','P','P','P','P','P',
+      'R','N','B','Q','K','B','N','R'
+    ];
+
+    const pieceSymbols = {
+      'K': '♔','Q': '♕','R': '♖','B': '♗','N': '♘','P': '♙',
+      'k': '♚','q': '♛','r': '♜','b': '♝','n': '♞','p': '♟'
+    };
+
+    const values = {
+      'p': 100,'n': 320,'b': 330,'r': 500,'q': 900,'k': 20000,
+      'P': -100,'N': -320,'B': -330,'R': -500,'Q': -900,'K': -20000
+    };
+
+    let board = [];
+    let selectedSquare = null;
+    let legalMoves = [];
+    let gameActive = true;
+    let difficulty = 2;
+
+    const boardElement = document.getElementById('board');
+    const statusElement = document.getElementById('status');
+    const resetBtn = document.getElementById('resetBtn');
+    const difficultyRange = document.getElementById('difficultyRange');
+    const difficultyValue = document.getElementById('difficultyValue');
+
+    function startGame() {
+      board = [...initialBoard];
+      selectedSquare = null;
+      legalMoves = [];
+      gameActive = true;
+      difficultyValue.textContent = difficulty;
+      statusElement.textContent = 'Haz click en una pieza blanca para mover.';
+      renderBoard();
+    }
+
+    function renderBoard() {
+      boardElement.innerHTML = '';
+      for (let i = 0; i < 64; i++) {
+        const square = document.createElement('div');
+        const row = Math.floor(i / 8);
+        const col = i % 8;
+        square.className = 'square ' + ((row + col) % 2 === 0 ? 'light' : 'dark');
+        square.dataset.index = i;
+        if (board[i]) {
+          square.textContent = pieceSymbols[board[i]] || board[i];
+        }
+        if (selectedSquare === i) square.classList.add('selected');
+        if (legalMoves.some(move => move.to === i)) square.classList.add('legal');
+        square.addEventListener('click', () => onSquareClick(i));
+        boardElement.appendChild(square);
+      }
+    }
+
+    function onSquareClick(index) {
+      if (!gameActive) return;
+      const piece = board[index];
+      if (selectedSquare === null) {
+        if (piece && isWhite(piece)) {
+          selectSquare(index);
+        }
+      } else {
+        const move = legalMoves.find(m => m.to === index);
+        if (move) {
+          makeMove(move);
+          selectedSquare = null;
+          legalMoves = [];
+          renderBoard();
+          if (gameActive) {
+            statusElement.textContent = 'IA pensando...';
+            setTimeout(() => aiMove(), 150);
+          }
+        } else if (piece && isWhite(piece)) {
+          selectSquare(index);
+        } else {
+          selectedSquare = null;
+          legalMoves = [];
+          renderBoard();
+        }
+      }
+    }
+
+    function selectSquare(index) {
+      selectedSquare = index;
+      legalMoves = getLegalMoves(index, 'white');
+      if (legalMoves.length === 0) {
+        selectedSquare = null;
+      }
+      renderBoard();
+    }
+
+    function makeMove(move) {
+      const fromPiece = board[move.from];
+      board[move.to] = move.promotion ? move.promotion : fromPiece;
+      board[move.from] = '';
+      if (move.promotion && move.from !== null) {
+        board[move.to] = move.promotion;
+      }
+      checkGameState();
+    }
+
+    function aiMove() {
+      const move = computeBestMove('black', difficulty * 1 + 1);
+      if (move) {
+        makeMove(move);
+        renderBoard();
+      }
+    }
+
+    function computeBestMove(color, depth) {
+      const maximizing = color === 'black';
+      const moves = getAllMoves(color);
+      if (moves.length === 0) return null;
+      let bestMove = moves[0];
+      let bestValue = maximizing ? -Infinity : Infinity;
+      for (const move of moves) {
+        const backup = [...board];
+        makeMove(move);
+        const score = minimax(depth - 1, -Infinity, Infinity, !maximizing);
+        board = backup;
+        if (maximizing && score > bestValue) {
+          bestValue = score;
+          bestMove = move;
+        }
+        if (!maximizing && score < bestValue) {
+          bestValue = score;
+          bestMove = move;
+        }
+      }
+      return bestMove;
+    }
+
+    function minimax(depth, alpha, beta, maximizing) {
+      const color = maximizing ? 'black' : 'white';
+      if (depth === 0) return evaluateBoard();
+      const moves = getAllMoves(color);
+      if (moves.length === 0) {
+        return evaluateBoard();
+      }
+      if (maximizing) {
+        let maxEval = -Infinity;
+        for (const move of moves) {
+          const backup = [...board];
+          makeMove(move);
+          const evalScore = minimax(depth - 1, alpha, beta, false);
+          board = backup;
+          maxEval = Math.max(maxEval, evalScore);
+          alpha = Math.max(alpha, evalScore);
+          if (beta <= alpha) break;
+        }
+        return maxEval;
+      } else {
+        let minEval = Infinity;
+        for (const move of moves) {
+          const backup = [...board];
+          makeMove(move);
+          const evalScore = minimax(depth - 1, alpha, beta, true);
+          board = backup;
+          minEval = Math.min(minEval, evalScore);
+          beta = Math.min(beta, evalScore);
+          if (beta <= alpha) break;
+        }
+        return minEval;
+      }
+    }
+
+    function evaluateBoard() {
+      let score = 0;
+      for (const square of board) {
+        if (!square) continue;
+        score += values[square] || 0;
+      }
+      return score;
+    }
+
+    function isWhite(piece) {
+      return piece === piece.toUpperCase();
+    }
+
+    function getAllMoves(color) {
+      const moves = [];
+      board.forEach((square, index) => {
+        if (square && (color === 'white' ? isWhite(square) : !isWhite(square))) {
+          moves.push(...getLegalMoves(index, color));
+        }
+      });
+      return moves;
+    }
+
+    function getLegalMoves(index, color) {
+      const piece = board[index];
+      if (!piece) return [];
+      const moves = [];
+      const row = Math.floor(index / 8);
+      const col = index % 8;
+      const forward = color === 'white' ? -1 : 1;
+      const enemy = color === 'white' ? 'black' : 'white';
+      if (piece.toLowerCase() === 'p') {
+        const oneStep = index + forward * 8;
+        if (isOnBoard(oneStep) && board[oneStep] === '') {
+          addPawnMove(index, oneStep, color, moves);
+          const startRow = color === 'white' ? 6 : 1;
+          const twoStep = index + forward * 16;
+          if (row === startRow && board[twoStep] === '' && board[oneStep] === '') {
+            moves.push({ from: index, to: twoStep });
+          }
+        }
+        for (const dcol of [-1, 1]) {
+          const capture = index + forward * 8 + dcol;
+          if (isOnBoard(capture) && Math.abs((capture % 8) - col) === 1) {
+            if (board[capture] && isColor(board[capture], enemy)) {
+              addPawnMove(index, capture, color, moves);
+            }
+          }
+        }
+      }
+      if (piece.toLowerCase() === 'n') {
+        const knightSteps = [17, 15, 10, 6, -17, -15, -10, -6];
+        knightSteps.forEach(step => {
+          const target = index + step;
+          if (isOnBoard(target) && Math.abs((index % 8) - (target % 8)) <= 2) {
+            if (!board[target] || isColor(board[target], enemy)) moves.push({ from: index, to: target });
+          }
+        });
+      }
+      if (piece.toLowerCase() === 'b' || piece.toLowerCase() === 'q') {
+        addSlidingMoves(index, color, [[1,1],[1,-1],[-1,1],[-1,-1]], moves);
+      }
+      if (piece.toLowerCase() === 'r' || piece.toLowerCase() === 'q') {
+        addSlidingMoves(index, color, [[1,0],[-1,0],[0,1],[0,-1]], moves);
+      }
+      if (piece.toLowerCase() === 'k') {
+        const kingSteps = [1,-1,8,-8,9,7,-7,-9];
+        kingSteps.forEach(step => {
+          const target = index + step;
+          if (isOnBoard(target) && Math.abs((index % 8) - (target % 8)) <= 1) {
+            if (!board[target] || isColor(board[target], enemy)) moves.push({ from: index, to: target });
+          }
+        });
+      }
+      return moves.filter(move => !wouldLeaveKingInCheck(move, color));
+    }
+
+    function addPawnMove(from, to, color, moves) {
+      const promotionRow = color === 'white' ? 0 : 7;
+      if (Math.floor(to / 8) === promotionRow) {
+        moves.push({ from, to, promotion: color === 'white' ? 'Q' : 'q' });
+      } else {
+        moves.push({ from, to });
+      }
+    }
+
+    function addSlidingMoves(index, color, directions, moves) {
+      const enemy = color === 'white' ? 'black' : 'white';
+      directions.forEach(([dr, dc]) => {
+        let r = Math.floor(index / 8);
+        let c = index % 8;
+        while (true) {
+          r += dr;
+          c += dc;
+          if (r < 0 || r > 7 || c < 0 || c > 7) break;
+          const target = r * 8 + c;
+          if (!board[target]) {
+            moves.push({ from: index, to: target });
+            continue;
+          }
+          if (isColor(board[target], enemy)) {
+            moves.push({ from: index, to: target });
+          }
+          break;
+        }
+      });
+    }
+
+    function isOnBoard(index) {
+      return index >= 0 && index < 64;
+    }
+
+    function isColor(piece, color) {
+      return piece && (color === 'white' ? isWhite(piece) : !isWhite(piece));
+    }
+
+    function findKing(color) {
+      const target = color === 'white' ? 'K' : 'k';
+      return board.indexOf(target);
+    }
+
+    function wouldLeaveKingInCheck(move, color) {
+      const backup = [...board];
+      const fromPiece = board[move.from];
+      board[move.to] = move.promotion ? move.promotion : fromPiece;
+      board[move.from] = '';
+      const kingPos = findKing(color);
+      const inCheck = isSquareAttacked(kingPos, color === 'white' ? 'black' : 'white');
+      board = backup;
+      return inCheck;
+    }
+
+    function isSquareAttacked(square, attackerColor) {
+      for (let i = 0; i < 64; i++) {
+        const attacker = board[i];
+        if (!attacker || !isColor(attacker, attackerColor)) continue;
+        const moves = getLegalMovesNoCheck(i, attackerColor);
+        if (moves.some(m => m.to === square)) return true;
+      }
+      return false;
+    }
+
+    function getLegalMovesNoCheck(index, color) {
+      const piece = board[index];
+      if (!piece) return [];
+      const moves = [];
+      const row = Math.floor(index / 8);
+      const col = index % 8;
+      const forward = color === 'white' ? -1 : 1;
+      const enemy = color === 'white' ? 'black' : 'white';
+      if (piece.toLowerCase() === 'p') {
+        const oneStep = index + forward * 8;
+        if (isOnBoard(oneStep) && board[oneStep] === '') {
+          addPawnMove(index, oneStep, color, moves);
+          const startRow = color === 'white' ? 6 : 1;
+          const twoStep = index + forward * 16;
+          if (row === startRow && board[twoStep] === '' && board[oneStep] === '') {
+            moves.push({ from: index, to: twoStep });
+          }
+        }
+        for (const dcol of [-1, 1]) {
+          const capture = index + forward * 8 + dcol;
+          if (isOnBoard(capture) && Math.abs((capture % 8) - col) === 1) {
+            if (board[capture] && isColor(board[capture], enemy)) {
+              addPawnMove(index, capture, color, moves);
+            }
+          }
+        }
+      }
+      if (piece.toLowerCase() === 'n') {
+        const knightSteps = [17, 15, 10, 6, -17, -15, -10, -6];
+        knightSteps.forEach(step => {
+          const target = index + step;
+          if (isOnBoard(target) && Math.abs((index % 8) - (target % 8)) <= 2) {
+            if (!board[target] || isColor(board[target], enemy)) moves.push({ from: index, to: target });
+          }
+        });
+      }
+      if (piece.toLowerCase() === 'b' || piece.toLowerCase() === 'q') {
+        addSlidingMoves(index, color, [[1,1],[1,-1],[-1,1],[-1,-1]], moves);
+      }
+      if (piece.toLowerCase() === 'r' || piece.toLowerCase() === 'q') {
+        addSlidingMoves(index, color, [[1,0],[-1,0],[0,1],[0,-1]], moves);
+      }
+      if (piece.toLowerCase() === 'k') {
+        const kingSteps = [1,-1,8,-8,9,7,-7,-9];
+        kingSteps.forEach(step => {
+          const target = index + step;
+          if (isOnBoard(target) && Math.abs((index % 8) - (target % 8)) <= 1) {
+            if (!board[target] || isColor(board[target], enemy)) moves.push({ from: index, to: target });
+          }
+        });
+      }
+      return moves;
+    }
+
+    function checkGameState() {
+      const whiteKing = findKing('white');
+      const blackKing = findKing('black');
+      if (whiteKing === -1) {
+        statusElement.textContent = '¡Has perdido! El rey blanco fue capturado.';
+        gameActive = false;
+        return;
+      }
+      if (blackKing === -1) {
+        statusElement.textContent = '¡Ganaste! El rey negro fue capturado.';
+        gameActive = false;
+        return;
+      }
+      const whiteMoves = getAllMoves('white');
+      const blackMoves = getAllMoves('black');
+      if (whiteMoves.length === 0) {
+        statusElement.textContent = 'Tablas: no hay movimientos legales.';
+        gameActive = false;
+      }
+      if (blackMoves.length === 0) {
+        statusElement.textContent = 'IA no tiene movimientos legales. ¡Ganaste!';
+        gameActive = false;
+      }
+    }
+
+    resetBtn.addEventListener('click', startGame);
+    difficultyRange.addEventListener('input', () => {
+      difficulty = Number(difficultyRange.value);
+      difficultyValue.textContent = difficulty;
+    });
+
+    startGame();
+  </script>
+</body>
+</html>
