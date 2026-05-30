@@ -5,20 +5,25 @@ margin:0;
 }
 
 .contenedor{
-background-color:rgba(0,0,0,0.7);
-min-height:100vh;
+background-color:rgba(0,0,0,0.75);
+width:90%;
+margin:auto;
+margin-top:20px;
 padding:30px;
 text-align:center;
 color:white;
+border-radius:20px;
+box-shadow:0px 0px 20px #e807f0;
 }
 
 .titulo{
 color:#e807f0;
 font-size:50px;
+text-shadow:0px 0px 15px #e807f0;
 }
 
 .subtitulo{
-font-size:18px;
+font-size:20px;
 }
 
 .animes{
@@ -26,15 +31,24 @@ color:#f43f5e;
 }
 
 .buscador{
-padding:10px;
-width:250px;
-border-radius:10px;
+padding:12px;
+width:280px;
+border-radius:20px;
 border:none;
+font-size:16px;
+text-align:center;
 }
 
-.tabla{
+.anime{
 background-color:rgba(255,255,255,0.1);
-text-align:center;
+padding:15px;
+border-radius:20px;
+transition:0.3s;
+}
+
+.anime:hover{
+transform:scale(1.05);
+box-shadow:0px 0px 20px #e807f0;
 }
 
 .descripcion{
@@ -42,7 +56,12 @@ font-size:18px;
 }
 
 img{
-border-radius:10px;
+border-radius:15px;
+transition:0.3s;
+}
+
+img:hover{
+transform:scale(1.03);
 }
 
 a{
@@ -52,4 +71,44 @@ color:white;
 
 h3{
 color:white;
+}
+
+button,
+input[type="submit"],
+input[type="reset"]{
+padding:12px 20px;
+border:none;
+border-radius:20px;
+background:linear-gradient(45deg,#e807f0,#f43f5e);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover{
+transform:scale(1.05);
+box-shadow:0px 0px 15px #e807f0;
+}
+
+select,
+textarea,
+input[type="text"]{
+padding:10px;
+border-radius:10px;
+border:none;
+font-size:16px;
+}
+
+textarea{
+width:300px;
+height:100px;
+}
+
+hr{
+border:1px solid rgba(255,255,255,0.3);
+margin-top:25px;
+margin-bottom:25px;
 }

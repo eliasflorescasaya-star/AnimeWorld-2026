@@ -6,9 +6,13 @@ margin:0;
 }
 
 .contenedor{
-background-color:rgba(0,0,0,0.7);
-min-height:100vh;
+background-color:rgba(0,0,0,0.75);
+width:85%;
+margin:auto;
+margin-top:20px;
 padding:30px;
+border-radius:20px;
+box-shadow:0px 0px 20px #eb0229;
 }
 
 header{
@@ -18,27 +22,35 @@ text-align:center;
 .titulo{
 font-size:50px;
 color:#e244b3;
+text-shadow:0px 0px 15px #e244b3;
 }
 
 .subtitulo{
-font-size:18px;
+font-size:20px;
+color:white;
 }
 
 .titulo2{
 color:#eb0229;
+text-align:center;
 }
 
 .titulo3{
 color:#e244b3;
+text-align:center;
 }
 
 .parrafo{
 font-size:18px;
 text-align:justify;
+line-height:1.7;
+padding:10px;
 }
 
 .lista{
 font-size:18px;
+width:300px;
+margin:auto;
 }
 
 .personajes{
@@ -50,6 +62,14 @@ color:#eb0229;
 background-color:rgba(255,255,255,0.1);
 font-size:18px;
 text-align:center;
+border-collapse:collapse;
+margin:auto;
+}
+
+.tabla td,
+.tabla th{
+padding:12px;
+border:1px solid white;
 }
 
 .encabezado{
@@ -62,5 +82,54 @@ color:#eb0229;
 }
 
 img{
+border-radius:15px;
+transition:0.3s;
+}
+
+img:hover{
+transform:scale(1.05);
+box-shadow:0px 0px 20px #eb0229;
+}
+
+button,
+input[type="submit"]{
+
+padding:12px 20px;
+border:none;
+border-radius:20px;
+background:linear-gradient(
+45deg,
+#eb0229,
+#e244b3
+);
+
+color:white;
+cursor:pointer;
+font-size:16px;
+transition:0.3s;
+
+}
+
+button:hover,
+input[type="submit"]:hover{
+
+transform:scale(1.05);
+box-shadow:0px 0px 15px #eb0229;
+
+}
+
+select{
+
+padding:10px;
 border-radius:10px;
+font-size:16px;
+
+}
+
+hr{
+
+border:1px solid rgba(255,255,255,0.3);
+margin-top:25px;
+margin-bottom:25px;
+
 }
