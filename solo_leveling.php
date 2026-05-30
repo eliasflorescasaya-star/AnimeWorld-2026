@@ -184,7 +184,7 @@ text-align:center;">
 
 <?php if(isset($_SESSION["usuario"])){ ?>
 
-<form action="php/guardarfavorito.php" method="POST">
+<form action="php/guardarfavoritos.php" method="POST">
 
 <input type="hidden" name="anime" value="Solo Leveling">
 
