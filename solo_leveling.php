@@ -234,7 +234,7 @@ text-align:center;">
 
 <td>
 <h3>👥 Personajes</h3>
-<a href="personajessolo.php">
+<a href="personajes_solo.html">
 <img src="imagenes/solo3.jpg" width="250" height="180">
 </a>
 </td>

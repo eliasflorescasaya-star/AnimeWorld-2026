@@ -1,7 +1,15 @@
-videos/
-sonidos/
+# Multimedia y contenido pesado
+arcos/
 gifs/
+imagenes/
+novelas mushoku/
+sonidos/
+tomos de darling/
+tomos de elfend lied/
+tomos de naruto/
+videos/
 
+# Archivos pesados
 *.pdf
 *.mp4
 *.mp3

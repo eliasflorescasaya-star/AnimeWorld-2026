@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Personajes de Solo Leveling</title>
+
+<link rel="icon" href="imagenes/solo.jpg">
+
+<style>
+
+body{
+    margin:0;
+    background:url('imagenes/solofondo.jpg') center/cover fixed;
+    color:white;
+    font-family:sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:#66ccff;
+    text-shadow:0px 0px 15px #0099ff;
+}
+
+input{
+    padding:10px;
+    width:250px;
+    border-radius:10px;
+    border:none;
+    margin:20px;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:#111;
+    width:230px;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:scale(1.08);
+    box-shadow:0px 0px 25px #0099ff;
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.info{
+    padding:10px;
+}
+
+.info h3{
+    color:#66ccff;
+}
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    width:350px;
+    box-shadow:0px 0px 25px #0099ff;
+}
+
+.popup-content button{
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+⚔ Personajes de Solo Leveling ⚔
+</h1>
+
+<input
+type="text"
+id="buscador"
+placeholder="Buscar personaje...">
+
+<div class="contenedor">
+
+<div class="card" data-name="jinwoo">
+
+<img src="imagenes/jingu.jpg">
+
+<div class="info">
+
+<h3>Sung Jin-Woo</h3>
+
+<p>Monarca de las Sombras.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="cha">
+
+<img src="imagenes/cha.jpg">
+
+<div class="info">
+
+<h3>Cha Hae-In</h3>
+
+<p>Cazadora rango S.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="beru">
+
+<img src="imagenes/beru.jpg">
+
+<div class="info">
+
+<h3>Beru</h3>
+
+<p>Soldado sombra más leal.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="igris">
+
+<img src="imagenes/igris.jpg">
+
+<div class="info">
+
+<h3>Igris</h3>
+
+<p>Caballero sombra de élite.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="thomas">
+
+<img src="imagenes/toma.jpg">
+
+<div class="info">
+
+<h3>Thomas Andre</h3>
+
+<p>Cazador de rango nacional.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="gunghee">
+
+<img src="imagenes/go.jpg">
+
+<div class="info">
+
+<h3>Go Gun-Hee</h3>
+
+<p>Presidente de la Asociación.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="jinchul">
+
+<img src="imagenes/woo.jpg">
+
+<div class="info">
+
+<h3>Woo Jin-Chul</h3>
+
+<p>Inspector de cazadores.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="ashborn">
+
+<img src="imagenes/ash.jpg">
+
+<div class="info">
+
+<h3>Ashborn</h3>
+
+<p>Monarca original de las Sombras.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="bellion">
+
+<img src="imagenes/Bellion.jpg">
+
+<div class="info">
+
+<h3>Bellion</h3>
+
+<p>Comandante del ejército de sombras.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="tusk">
+
+<img src="imagenes/tusk.jpg">
+
+<div class="info">
+
+<h3>Tusk</h3>
+
+<p>Mago sombra.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="iron">
+
+<img src="imagenes/iron.jpg">
+
+<div class="info">
+
+<h3>Iron</h3>
+
+<p>Tanque del ejército sombra.</p>
+
+</div>
+
+</div>
+
+<div class="card" data-name="kaisel">
+
+<img src="imagenes/kaisel.jpg">
+
+<div class="info">
+
+<h3>Kaisel</h3>
+
+<p>Dragón volador de Jin-Woo.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<h2 id="titulo"></h2>
+
+<p id="descripcion"></p>
+
+<br>
+
+<button onclick="cerrarPopup()">
+
+Cerrar
+
+</button>
+
+</div>
+
+</div>
+
+<audio
+id="clickSound"
+src="sonidos/WhatsApp Audio 2026-05-04 at 10.25.34 PM.mpeg">
+</audio>
+
+<br>
+<br>
+
+<a href="solo_leveling.php">
+
+<button>
+
+⬅ Volver
+
+</button>
+
+</a>
+
+<script src="javascrip/solo.js"></script>
+
+</body>
+
+</html>
