@@ -199,6 +199,27 @@ gap:20px;">
 </a>
 </div>
 
+<div class="anime" data-name="tatenoyuusha">
+<a href="Nazo.php">
+<img src="imagenes/Nazo-no-Kanojo-X.jpg" width="300" height="200">
+<h3>Nazo no Kanojo X</h3>
+</a>
+</div>
+
+<div class="anime" data-name="tatenoyuusha">
+<a href="clannad.php">
+<img src="imagenes/clannad.jpg" width="300" height="200">
+<h3>Clannad</h3>
+</a>
+</div>
+
+<div class="anime" data-name="tatenoyuusha">
+<a href="nogame.php">
+<img src="imagenes/no-game-no-life.jpg" width="300" height="200">
+<h3>No Game No Life</h3>
+</a>
+</div>
+
 </div>
 
 <hr>
@@ -240,7 +261,16 @@ readonly>
 <option>Darling in the Franxx</option>
 <option>Elfen Lied</option>
 <option>Mushoku Tensei</option>
-
+<option>Solo Leveling</option>
+<option>Classroom of the Elite</option>
+<option>Black Clover</option>
+<option>Konosuba</option>
+<option>Bleach</option>
+<option>Sword Art Online</option>
+<option>Tate no Yuusha</option>
+<option>Nazo no kanojo x</option>
+<option>Clannad</option>
+<option>No game no life</option>
 </select>
 
 <br><br>
