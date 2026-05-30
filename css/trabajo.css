@@ -18,7 +18,7 @@ box-shadow:0px 0px 20px #e807f0;
 
 .titulo{
 color:#e807f0;
-font-size:50px;
+font-size:55px;
 text-shadow:0px 0px 15px #e807f0;
 }
 
@@ -40,28 +40,32 @@ text-align:center;
 }
 
 .anime{
-background-color:rgba(255,255,255,0.1);
+background:rgba(255,255,255,0.10);
 padding:15px;
 border-radius:20px;
-transition:0.3s;
+transition:0.4s;
+width:300px;
 }
 
 .anime:hover{
 transform:scale(1.05);
-box-shadow:0px 0px 20px #e807f0;
+box-shadow:0px 0px 25px #e807f0;
+}
+
+.anime img{
+width:300px;
+height:200px;
+object-fit:cover;
+border-radius:15px;
+transition:0.4s;
+}
+
+.anime img:hover{
+transform:scale(1.03);
 }
 
 .descripcion{
 font-size:18px;
-}
-
-img{
-border-radius:15px;
-transition:0.3s;
-}
-
-img:hover{
-transform:scale(1.03);
 }
 
 a{
@@ -76,39 +80,54 @@ color:white;
 button,
 input[type="submit"],
 input[type="reset"]{
+
 padding:12px 20px;
 border:none;
-border-radius:20px;
-background:linear-gradient(45deg,#e807f0,#f43f5e);
+border-radius:25px;
+background:linear-gradient(
+45deg,
+#e807f0,
+#f43f5e
+);
+
 color:white;
 font-size:16px;
 cursor:pointer;
 transition:0.3s;
+
 }
 
 button:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover{
+
 transform:scale(1.05);
 box-shadow:0px 0px 15px #e807f0;
+
 }
 
-select,
+input[type="text"],
 textarea,
-input[type="text"]{
+select{
+
 padding:10px;
-border-radius:10px;
 border:none;
+border-radius:10px;
 font-size:16px;
+
 }
 
 textarea{
+
 width:300px;
 height:100px;
+
 }
 
 hr{
+
 border:1px solid rgba(255,255,255,0.3);
 margin-top:25px;
 margin-bottom:25px;
+
 }
