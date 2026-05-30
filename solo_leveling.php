@@ -11,7 +11,7 @@ session_start();
 <title>Solo Leveling</title>
 
 <link rel="icon" href="imagenes/solo1.jpg">
-<link rel="stylesheet" href="css/solo.css">
+<link rel="stylesheet" href="css/solo.css?v=21">
 </head>
 
 <body>

@@ -11,7 +11,7 @@ session_start();
 
 <link rel="icon" href="imagenes/𖦹 ִ ۫ ⭒ kokomi.jfif">
 
-<link rel="stylesheet" href="css/trabajo.css">
+<link rel="stylesheet" href="css/trabajo.css?v=20">
 
 </head>
 

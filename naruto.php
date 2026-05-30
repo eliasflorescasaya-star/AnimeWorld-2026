@@ -12,7 +12,7 @@ session_start();
 
 <link rel="icon" href="imagenes/Naruto uzumaki ★.jfif">
 
-<link rel="stylesheet" href="css/naruto.css">
+<link rel="stylesheet" href="css/naruto.css?v=21">
 
 </head>
 

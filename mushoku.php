@@ -12,7 +12,7 @@ session_start();
 
 <link rel="icon" href="imagenes/rudy.jpg">
 
-<link rel="stylesheet" href="css/mushoku.css">
+<link rel="stylesheet" href="css/mushoku.css?v=21">
 
 </head>
 

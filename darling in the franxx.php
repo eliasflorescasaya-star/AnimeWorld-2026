@@ -12,7 +12,7 @@ session_start();
 
 <link rel="icon" href="imagenes/darling1.jpg">
 
-<link rel="stylesheet" href="css/darling.css">
+<link rel="stylesheet" href="css/darling.css?v=21">
 
 </head>
 

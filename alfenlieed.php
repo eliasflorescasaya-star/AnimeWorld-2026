@@ -12,7 +12,7 @@ session_start();
 
 <link rel="icon" href="imagenes/elfenlieed.jpg">
 
-<link rel="stylesheet" href="css/elfend.css">
+<link rel="stylesheet" href="css/elfend.css?v=21">
 
 </head>
 
