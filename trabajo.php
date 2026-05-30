@@ -199,21 +199,21 @@ gap:20px;">
 </a>
 </div>
 
-<div class="anime" data-name="tatenoyuusha">
+<div class="anime" data-name="nazo no kanojo x">
 <a href="Nazo.php">
 <img src="imagenes/Nazo-no-Kanojo-X.jpg" width="300" height="200">
 <h3>Nazo no Kanojo X</h3>
 </a>
 </div>
 
-<div class="anime" data-name="tatenoyuusha">
+<div class="anime" data-name="clannad">
 <a href="clannad.php">
 <img src="imagenes/clannad.jpg" width="300" height="200">
 <h3>Clannad</h3>
 </a>
 </div>
 
-<div class="anime" data-name="tatenoyuusha">
+<div class="anime" data-name="no game no life">
 <a href="nogame.php">
 <img src="imagenes/no-game-no-life.jpg" width="300" height="200">
 <h3>No Game No Life</h3>
