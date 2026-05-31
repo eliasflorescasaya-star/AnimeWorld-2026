@@ -41,7 +41,7 @@ MANHWA
 📖 Capítulos 1 - 10 (Gratis)
 </h3>
 
-<a href="solo1.html">
+<a href="manhwa.html">
 
 <button>
 Leer gratis
@@ -57,25 +57,25 @@ Leer gratis
 🔓 Contenido exclusivo
 </h3>
 
-<a href="solo2.html">
+<a href="manhwa1.html">
 <button>Capítulos 11 - 30</button>
 </a>
 
 <br><br>
 
-<a href="solo3.html">
+<a href="manhwa2.html">
 <button>Capítulos 31 - 60</button>
 </a>
 
 <br><br>
 
-<a href="solo4.html">
+<a href="manhwa3.html">
 <button>Capítulos 61 - 100</button>
 </a>
 
 <br><br>
 
-<a href="solo5.html">
+<a href="manhwa4.html">
 <button>Capítulos 101 - Final</button>
 </a>
 
