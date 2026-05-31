@@ -238,7 +238,7 @@ height="180">
 
 <a href="imagenesclassroom.php">
 
-<img src="imagenes/horikita.jpg"
+<img src="imagenes/hotikita1.jpg"
 width="250"
 height="180">
 
@@ -255,7 +255,7 @@ height="180">
 
 <a href="personajesclassroom.php">
 
-<img src="imagenes/kei.jpg"
+<img src="imagenes/katsuragi.jpg"
 width="250"
 height="180">
 
