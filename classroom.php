@@ -236,7 +236,7 @@ height="180">
 <td>
 <h3>🖼 Imágenes y GIFs</h3>
 
-<a href="imagenesclassroom.php">
+<a href="imagenes_classroom.html">
 
 <img src="imagenes/hotikita1.jpg"
 width="250"
@@ -253,7 +253,7 @@ height="180">
 <td>
 <h3>👥 Personajes</h3>
 
-<a href="personajesclassroom.php">
+<a href="personajes_classroom.html">
 
 <img src="imagenes/katsuragi.jpg"
 width="250"

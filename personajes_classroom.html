@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Personajes de Classroom of the Elite</title>
+
+<style>
+
+body{
+    margin:0;
+    background:linear-gradient(rgba(0,0,0,0.7), #003366);
+    color:white;
+    font-family:sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:#66ccff;
+}
+
+input{
+    padding:10px;
+    width:250px;
+    border-radius:10px;
+    border:none;
+    margin:20px;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:#111;
+    width:230px;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:scale(1.08);
+    box-shadow:0px 0px 25px #66ccff;
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.info{
+    padding:10px;
+}
+
+.info h3{
+    color:#66ccff;
+}
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    width:350px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+🧠 Personajes de Classroom of the Elite
+</h1>
+
+<input
+type="text"
+id="buscador"
+placeholder="Buscar personaje...">
+
+<div class="contenedor">
+
+<div class="card" data-name="ayanokoji">
+<img src="imagenes/ayanokoji.jpg">
+<div class="info">
+<h3>Kiyotaka Ayanokōji</h3>
+<p>Genio oculto de la Clase D.</p>
+</div>
+</div>
+
+<div class="card" data-name="horikita">
+<img src="imagenes/horikita.jpg">
+<div class="info">
+<h3>Suzune Horikita</h3>
+<p>Aspira a alcanzar la Clase A.</p>
+</div>
+</div>
+
+<div class="card" data-name="kei">
+<img src="imagenes/kei.jpg">
+<div class="info">
+<h3>Kei Karuizawa</h3>
+<p>Aliada más cercana de Ayanokōji.</p>
+</div>
+</div>
+
+<div class="card" data-name="ichinose">
+<img src="imagenes/ichinose.jpg">
+<div class="info">
+<h3>Honami Ichinose</h3>
+<p>Líder amable de la Clase B.</p>
+</div>
+</div>
+
+<div class="card" data-name="ryuen">
+<img src="imagenes/ryuen.jpg">
+<div class="info">
+<h3>Ryūen Kakeru</h3>
+<p>Estratega agresivo y temido.</p>
+</div>
+</div>
+
+<div class="card" data-name="sakayanagi">
+<img src="imagenes/sakayanagi.jpg">
+<div class="info">
+<h3>Arisu Sakayanagi</h3>
+<p>Prodigio rival de Ayanokōji.</p>
+</div>
+</div>
+
+<div class="card" data-name="koenji">
+<img src="imagenes/koenji.jpg">
+<div class="info">
+<h3>Rokusuke Kōenji</h3>
+<p>Estudiante excéntrico y talentoso.</p>
+</div>
+</div>
+
+<div class="card" data-name="kushida">
+<img src="imagenes/kushida.jpg">
+<div class="info">
+<h3>Kikyō Kushida</h3>
+<p>La chica de las dos caras.</p>
+</div>
+</div>
+
+<div class="card" data-name="manabu">
+<img src="imagenes/manabu.jpg">
+<div class="info">
+<h3>Manabu Horikita</h3>
+<p>Presidente del consejo estudiantil.</p>
+</div>
+</div>
+
+<div class="card" data-name="hosen">
+<img src="imagenes/hosen.jpg">
+<div class="info">
+<h3>Kazuomi Hōsen</h3>
+<p>Estudiante violento de primer año.</p>
+</div>
+</div>
+
+<div class="card" data-name="hirata">
+<img src="imagenes/hirata.jpg">
+<div class="info">
+<h3>Yōsuke Hirata</h3>
+<p>Líder social de la clase.</p>
+</div>
+</div>
+
+<div class="card" data-name="hiyori">
+<img src="imagenes/hiyori.jpg">
+<div class="info">
+<h3>Hiyori Shiina</h3>
+<p>Amante de la lectura.</p>
+</div>
+</div>
+
+<div class="card" data-name="yagami">
+<img src="imagenes/yagami.jpg">
+<div class="info">
+<h3>Takuya Yagami</h3>
+<p>Alumno relacionado con la White Room.</p>
+</div>
+</div>
+
+<div class="card" data-name="nanase">
+<img src="imagenes/nanase.jpg">
+<div class="info">
+<h3>Nanase Tsubasa</h3>
+<p>Hábil estudiante de primer año.</p>
+</div>
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<h2 id="titulo"></h2>
+
+<p id="descripcion"></p>
+
+<button onclick="cerrarPopup()">
+
+Cerrar
+
+</button>
+
+</div>
+
+</div>
+
+<audio id="clickSound"
+src="sonidos/WhatsApp Audio 2026-05-04 at 10.25.34 PM.mpeg">
+</audio>
+
+<script src="javascrip/personajesclassroom.js"></script>
+
+<br><br>
+
+<a href="classroom.php">
+
+<button>
+
+⬅ Volver
+
+</button>
+
+</a>
+
+</body>
+
+</html>
+
