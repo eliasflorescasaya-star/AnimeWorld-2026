@@ -206,10 +206,10 @@ gap:20px;">
 </a>
 </div>
 
-<div class="anime" data-name="clannad">
-<a href="clannad.php">
-<img src="imagenes/clannad.jpg" width="300" height="200">
-<h3>Clannad</h3>
+<div class="anime" data-name="akame ga kill">
+<a href="akame.php">
+<img src="imagenes/akame.jpg" width="300" height="200">
+<h3>Akame ga Kill</h3>
 </a>
 </div>
 
@@ -269,7 +269,7 @@ readonly>
 <option>Sword Art Online</option>
 <option>Tate no Yuusha</option>
 <option>Nazo no kanojo x</option>
-<option>Clannad</option>
+<option>Akame ga Kill</option>
 <option>No game no life</option>
 </select>
 
