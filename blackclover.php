@@ -10,7 +10,7 @@ session_start();
 <title>Black Clover - Historia</title>
 
 <link rel="icon" href="imagenes/black.jpg">
-<link rel="stylesheet" href="css/blackclover.css?v=1">
+<link rel="stylesheet" href="css/blackclover.css?v=2">
 </head>
 
 <body>
@@ -177,15 +177,15 @@ la igualdad y la importancia de no rendirse aunque todos estén en contra.
 
 <td>
 <h3>📚 Manga</h3>
-<a href="manga_blackclover.php">
+<a href="manga-black.php">
 <img src="imagenes/asta.jpg" width="250" height="180">
 </a>
 </td>
 
 <td>
 <h3>🖼 Imágenes y GIFs</h3>
-<a href="imagenes_blackclover.html">
-<img src="imagenes/black.jpg" width="250" height="180">
+<a href="imagenes_black.html">
+<img src="imagenes/asta1.jfif" width="250" height="180">
 </a>
 </td>
 
@@ -195,8 +195,8 @@ la igualdad y la importancia de no rendirse aunque todos estén en contra.
 
 <td>
 <h3>👥 Personajes</h3>
-<a href="personajes_blackclover.html">
-<img src="imagenes/yami.jpg" width="250" height="180">
+<a href="personajes_black.html">
+<img src="imagenes/asta2.jpg" width="250" height="180">
 </a>
 </td>
 

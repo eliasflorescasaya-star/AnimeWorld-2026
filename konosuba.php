@@ -10,7 +10,7 @@ session_start();
 <title>Konosuba - Historia</title>
 
 <link rel="icon" href="imagenes/konosuba.jpg">
-<link rel="stylesheet" href="css/konosuba.css?v=1">
+<link rel="stylesheet" href="css/konosuba.css?v=2">
 </head>
 
 <body>
@@ -106,7 +106,7 @@ y la parodia de los mundos de fantasía e isekai.
 
 <hr>
 
-<h2 class="menu">⭐ Valora Konosuba ⭐</h2>
+<h2 class="menu">⭐ Valora Konosuba ⭐ </h2>
 
 <?php if(isset($_SESSION["usuario"])){ ?>
 
@@ -179,14 +179,14 @@ y la parodia de los mundos de fantasía e isekai.
 <td>
 <h3>📚 Novela ligera</h3>
 <a href="novela_konosuba.php">
-<img src="imagenes/kazuma.jpg" width="250" height="180">
+<img src="imagenes/kasuma0.jpg" width="250" height="180">
 </a>
 </td>
 
 <td>
 <h3>🖼 Imágenes y GIFs</h3>
 <a href="imagenes_konosuba.html">
-<img src="imagenes/megumin.jpg" width="250" height="180">
+<img src="imagenes/kasuma2.jpg" width="250" height="180">
 </a>
 </td>
 
@@ -197,7 +197,7 @@ y la parodia de los mundos de fantasía e isekai.
 <td>
 <h3>👥 Personajes</h3>
 <a href="personajes_konosuba.html">
-<img src="imagenes/aqua.jpg" width="250" height="180">
+<img src="imagenes/kasuma3.jpg" width="250" height="180">
 </a>
 </td>
 

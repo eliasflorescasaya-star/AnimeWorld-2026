@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Personajes de Konosuba</title>
+
+<link rel="icon" href="imagenes/konosuba.jpg">
+
+<style>
+
+body{
+    margin:0;
+    background:linear-gradient(rgba(0,0,0,0.7), #075985);
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:#38bdf8;
+    text-shadow:0 0 15px #38bdf8;
+}
+
+input{
+    padding:12px;
+    width:270px;
+    border-radius:15px;
+    border:none;
+    margin:20px;
+    font-size:16px;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    padding:20px;
+}
+
+.card{
+    background:#111;
+    width:230px;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:scale(1.08);
+    box-shadow:0px 0px 25px #38bdf8;
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.info{
+    padding:10px;
+}
+
+.info h3{
+    color:#facc15;
+}
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.popup-content{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    width:350px;
+    border:2px solid #38bdf8;
+    box-shadow:0 0 25px #38bdf8;
+}
+
+.popup-content h2{
+    color:#facc15;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(45deg,#38bdf8,#facc15);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px #38bdf8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+💦 Personajes de Konosuba 💦
+</h1>
+
+<input
+type="text"
+id="buscador"
+placeholder="🔎 Buscar personaje...">
+
+<div class="contenedor">
+
+<div class="card" data-name="kazuma">
+
+<img src="imagenes/kazuma.jpg">
+
+<div class="info">
+
+<h3>Kazuma Satou</h3>
+
+<p>Protagonista astuto y sarcástico.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="aqua">
+
+<img src="imagenes/aqua.jpg">
+
+<div class="info">
+
+<h3>Aqua</h3>
+
+<p>Diosa del agua y compañera de Kazuma.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="megumin">
+
+<img src="imagenes/megumin.jpg">
+
+<div class="info">
+
+<h3>Megumin</h3>
+
+<p>Archimaga obsesionada con Explosion.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="darkness">
+
+<img src="imagenes/darkness.jpg">
+
+<div class="info">
+
+<h3>Darkness</h3>
+
+<p>Cruzada extremadamente resistente.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="yunyun">
+
+<img src="imagenes/yunyun.jpg">
+
+<div class="info">
+
+<h3>Yunyun</h3>
+
+<p>Amiga y rival de Megumin.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="wiz">
+
+<img src="imagenes/wiz.jpg">
+
+<div class="info">
+
+<h3>Wiz</h3>
+
+<p>Archimaga lich y dueña de una tienda.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="vanir">
+
+<img src="imagenes/vanir.jpg">
+
+<div class="info">
+
+<h3>Vanir</h3>
+
+<p>Demonio poderoso y compañero de Wiz.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="chris">
+
+<img src="imagenes/chris.jpg">
+
+<div class="info">
+
+<h3>Chris</h3>
+
+<p>Ladrona habilidosa y amiga de Darkness.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="eris">
+
+<img src="imagenes/eris_konosuba.jpg">
+
+<div class="info">
+
+<h3>Eris</h3>
+
+<p>Diosa respetada en el mundo de Konosuba.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="iris">
+
+<img src="imagenes/iris.jpg">
+
+<div class="info">
+
+<h3>Iris</h3>
+
+<p>Princesa del Reino de Belzerg.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="luna">
+
+<img src="imagenes/luna.jpg">
+
+<div class="info">
+
+<h3>Luna</h3>
+
+<p>Recepcionista del gremio de aventureros.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="dust">
+
+<img src="imagenes/dust.jpg">
+
+<div class="info">
+
+<h3>Dust</h3>
+
+<p>Aventurero y conocido de Kazuma.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="komekko">
+
+<img src="imagenes/komekko.jpg">
+
+<div class="info">
+
+<h3>Komekko</h3>
+
+<p>Hermana menor de Megumin.</p>
+
+</div>
+
+</div>
+
+
+<div class="card" data-name="wolbach">
+
+<img src="imagenes/wolbach.jpg">
+
+<div class="info">
+
+<h3>Wolbach</h3>
+
+<p>Diosa relacionada con explosiones y destrucción.</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<h2 id="titulo"></h2>
+
+<p id="descripcion"></p>
+
+<button onclick="cerrarPopup()">
+Cerrar
+</button>
+
+</div>
+
+</div>
+
+
+<audio
+id="clickSound"
+src="sonidos/WhatsApp Audio 2026-05-04 at 10.25.34 PM.mpeg">
+</audio>
+
+
+<script src="javascrip/konosuba.js"></script>
+
+
+<br><br>
+
+<a href="konosuba.php">
+
+<button>
+💦 ⬅ Volver
+</button>
+
+</a>
+
+<br><br>
+
+</body>
+
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Personajes de Black Clover</title>
+
+<style>
+
+body{
+    margin:0;
+    background:linear-gradient(rgba(0,0,0,0.8), #052e16);
+    color:white;
+    font-family:sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:#22c55e;
+    text-shadow:0 0 15px #22c55e;
+}
+
+input{
+    padding:10px;
+    width:250px;
+    border-radius:10px;
+    border:none;
+    margin:20px;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:#111;
+    width:230px;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:scale(1.08);
+    box-shadow:0px 0px 25px #22c55e;
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.info{
+    padding:10px;
+}
+
+.info h3{
+    color:#22c55e;
+}
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    width:350px;
+    border:2px solid #22c55e;
+    box-shadow:0 0 25px #22c55e;
+}
+
+.popup-content h2{
+    color:#facc15;
+}
+
+button{
+    background:linear-gradient(45deg,#16a34a,#facc15);
+    color:white;
+    font-size:16px;
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px #22c55e;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+🍀 Personajes de Black Clover 🍀
+</h1>
+
+<input
+type="text"
+id="buscador"
+placeholder="Buscar personaje...">
+
+<div class="contenedor">
+
+
+<!-- ASTA -->
+
+<div class="card" data-name="asta">
+
+<img src="imagenes/asta.jpg">
+
+<div class="info">
+
+<h3>Asta</h3>
+
+<p>
+Caballero Mágico que utiliza el poder de la Anti-Magia.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- YUNO -->
+
+<div class="card" data-name="yuno">
+
+<img src="imagenes/yuno.jpg">
+
+<div class="info">
+
+<h3>Yuno</h3>
+
+<p>
+Prodigioso Caballero Mágico y rival de Asta.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- NOELLE -->
+
+<div class="card" data-name="noelle">
+
+<img src="imagenes/noelle.jpg">
+
+<div class="info">
+
+<h3>Noelle Silva</h3>
+
+<p>
+Miembro de los Toros Negros y poderosa maga de agua.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- YAMI -->
+
+<div class="card" data-name="yami">
+
+<img src="imagenes/yami.jpg">
+
+<div class="info">
+
+<h3>Yami Sukehiro</h3>
+
+<p>
+Capitán de los Toros Negros y usuario de Magia Oscura.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- JULIUS -->
+
+<div class="card" data-name="julius">
+
+<img src="imagenes/julius.jpg">
+
+<div class="info">
+
+<h3>Julius Novachrono</h3>
+
+<p>
+Rey Mago del Reino del Trébol.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- MEREOLEONA -->
+
+<div class="card" data-name="mereoleona">
+
+<img src="imagenes/mereoleona.jpg">
+
+<div class="info">
+
+<h3>Mereoleona Vermillion</h3>
+
+<p>
+Una de las magas de fuego más poderosas del reino.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- NOZEL -->
+
+<div class="card" data-name="nozel">
+
+<img src="imagenes/nozel.jpg">
+
+<div class="info">
+
+<h3>Nozel Silva</h3>
+
+<p>
+Capitán de las Águilas Plateadas.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- FUEGOLEON -->
+
+<div class="card" data-name="fuegoleon">
+
+<img src="imagenes/fuegoleon.jpg">
+
+<div class="info">
+
+<h3>Fuegoleon Vermillion</h3>
+
+<p>
+Poderoso capitán y usuario de magia de fuego.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- LUCK -->
+
+<div class="card" data-name="luck">
+
+<img src="imagenes/luck.jpg">
+
+<div class="info">
+
+<h3>Luck Voltia</h3>
+
+<p>
+Miembro de los Toros Negros obsesionado con las batallas.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- MAGNA -->
+
+<div class="card" data-name="magna">
+
+<img src="imagenes/magna.jpg">
+
+<div class="info">
+
+<h3>Magna Swing</h3>
+
+<p>
+Mago de fuego y gran compañero de Asta.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- FINRAL -->
+
+<div class="card" data-name="finral">
+
+<img src="imagenes/finral.jpg">
+
+<div class="info">
+
+<h3>Finral Roulacase</h3>
+
+<p>
+Mago espacial de los Toros Negros.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- VANESSA -->
+
+<div class="card" data-name="vanessa">
+
+<img src="imagenes/vanessa.jpg">
+
+<div class="info">
+
+<h3>Vanessa Enoteca</h3>
+
+<p>
+Bruja capaz de manipular el destino mediante su magia.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- NACHT -->
+
+<div class="card" data-name="nacht">
+
+<img src="imagenes/nacht.jpg">
+
+<div class="info">
+
+<h3>Nacht Faust</h3>
+
+<p>
+Vicecapitán de los Toros Negros y usuario de magia demoníaca.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- LIEBE -->
+
+<div class="card" data-name="liebe">
+
+<img src="imagenes/liebe.jpg">
+
+<div class="info">
+
+<h3>Liebe</h3>
+
+<p>
+Demonio de la Anti-Magia vinculado al grimorio de Asta.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<h2 id="titulo"></h2>
+
+<p id="descripcion"></p>
+
+<button onclick="cerrarPopup()">
+Cerrar
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SONIDO -->
+
+<audio
+id="clickSound"
+src="sonidos/WhatsApp Audio 2026-05-04 at 10.25.34 PM.mpeg">
+</audio>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="javascrip/blackclover.js"></script>
+
+
+<br><br>
+
+
+<a href="blackclover.php">
+
+<button>
+🍀 ⬅ Volver
+</button>
+
+</a>
+
+<br><br>
+
+</body>
+
+</html>
