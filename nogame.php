@@ -10,7 +10,7 @@ session_start();
 <title>No Game No Life - Historia</title>
 
 <link rel="icon" href="imagenes/nogame.jpg">
-<link rel="stylesheet" href="css/nogame.css?v=1">
+<link rel="stylesheet" href="css/nogame.css?v=2">
 </head>
 
 <body>
@@ -181,15 +181,15 @@ la inteligencia, la cooperación y la forma de ganar sin usar violencia directa.
 
 <td>
 <h3>📚 Novela ligera</h3>
-<a href="novela_nogamenolife.php">
-<img src="imagenes/sora.jpg" width="250" height="180">
+<a href="novela_nogame.php">
+<img src="imagenes/nogame1.jpg" width="250" height="180">
 </a>
 </td>
 
 <td>
 <h3>🖼 Imágenes y GIFs</h3>
-<a href="imagenes_nogamenolife.html">
-<img src="imagenes/shiro.jpg" width="250" height="180">
+<a href="imagenes_nogame.html">
+<img src="imagenes/nogame3.jpg" width="250" height="180">
 </a>
 </td>
 
@@ -199,8 +199,8 @@ la inteligencia, la cooperación y la forma de ganar sin usar violencia directa.
 
 <td>
 <h3>👥 Personajes</h3>
-<a href="personajes_nogamenolife.html">
-<img src="imagenes/jibril.jpg" width="250" height="180">
+<a href="personajes_nogame.html">
+<img src="imagenes/nogame4.jpg" width="250" height="180">
 </a>
 </td>
 

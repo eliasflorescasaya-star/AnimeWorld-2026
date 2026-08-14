@@ -10,7 +10,7 @@ session_start();
 <title>Tate no Yuusha - Historia</title>
 
 <link rel="icon" href="imagenes/naofumi.jpg">
-<link rel="stylesheet" href="css/tatenoyuusha.css?v=1">
+<link rel="stylesheet" href="css/tatenoyuusha.css?v=2">
 </head>
 
 <body>
@@ -199,15 +199,15 @@ la protección de los seres queridos y la reconstrucción personal después de u
 
 <td>
 <h3>📚 Novela ligera</h3>
-<a href="novela_tatenoyuusha.php">
-<img src="imagenes/naofumi.jpg" width="250" height="180">
+<a href="novela_tate.php">
+<img src="imagenes/tate2.jpg" width="250" height="180">
 </a>
 </td>
 
 <td>
 <h3>🖼 Imágenes y GIFs</h3>
-<a href="imagenes_tatenoyuusha.html">
-<img src="imagenes/raphtalia.jpg" width="250" height="180">
+<a href="imagenes_tate.html">
+<img src="imagenes/tate3.jpg" width="250" height="180">
 </a>
 </td>
 
@@ -217,8 +217,8 @@ la protección de los seres queridos y la reconstrucción personal después de u
 
 <td>
 <h3>👥 Personajes</h3>
-<a href="personajes_tatenoyuusha.html">
-<img src="imagenes/filo.jpg" width="250" height="180">
+<a href="personajes_tate.html">
+<img src="imagenes/tate4.jpg" width="250" height="180">
 </a>
 </td>
 

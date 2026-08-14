@@ -14,7 +14,7 @@ session_start();
 
 <link rel="icon" href="imagenes/kirito.jpg">
 
-<link rel="stylesheet" href="css/sao.css?v=1">
+<link rel="stylesheet" href="css/sao.css?v=2">
 
 </head>
 
@@ -248,9 +248,9 @@ la tecnología, la realidad virtual y el crecimiento personal.
 
 <h3>📚 Novela ligera</h3>
 
-<a href="novela_sao.php">
+<a href="manga_sao.php">
 
-<img src="imagenes/kirito.jpg"
+<img src="imagenes/sao2.jfif"
 width="250"
 height="180">
 
@@ -264,7 +264,7 @@ height="180">
 
 <a href="imagenes_sao.html">
 
-<img src="imagenes/asuna.jpg"
+<img src="imagenes/sao3.jpg"
 width="250"
 height="180">
 
@@ -282,7 +282,7 @@ height="180">
 
 <a href="personajes_sao.html">
 
-<img src="imagenes/alice.jpg"
+<img src="imagenes/sao4.jpg"
 width="250"
 height="180">
 

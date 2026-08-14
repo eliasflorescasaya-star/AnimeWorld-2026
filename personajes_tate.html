@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Personajes de Tate no Yuusha</title>
+
+<link rel="icon" href="imagenes/tate.jpg">
+
+<style>
+
+body{
+    margin:0;
+    background:linear-gradient(rgba(0,0,0,0.82), #052e16);
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:#22c55e;
+    text-shadow:0 0 15px #16a34a;
+}
+
+input{
+    padding:12px;
+    width:270px;
+    border-radius:15px;
+    border:none;
+    margin:20px;
+    font-size:16px;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    padding:20px;
+}
+
+.card{
+    background:#111;
+    width:230px;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:scale(1.08);
+    box-shadow:0px 0px 25px #22c55e;
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.info{
+    padding:10px;
+}
+
+.info h3{
+    color:#fde047;
+}
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.popup-content{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    width:350px;
+    border:2px solid #22c55e;
+    box-shadow:0 0 25px #16a34a;
+}
+
+.popup-content h2{
+    color:#fde047;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(45deg,#16a34a,#fde047);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px #22c55e;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+🛡️ Personajes de Tate no Yuusha 🛡️
+</h1>
+
+<input
+type="text"
+id="buscador"
+placeholder="🔎 Buscar personaje...">
+
+<div class="contenedor">
+
+<div class="card" data-name="naofumi">
+<img src="imagenes/naofumi.jpg">
+<div class="info">
+<h3>Naofumi Iwatani</h3>
+<p>Héroe del Escudo y protagonista principal.</p>
+</div>
+</div>
+
+<div class="card" data-name="raphtalia">
+<img src="imagenes/raphtalia.jpg">
+<div class="info">
+<h3>Raphtalia</h3>
+<p>Compañera leal y gran espadachina.</p>
+</div>
+</div>
+
+<div class="card" data-name="filo">
+<img src="imagenes/filo.jpg">
+<div class="info">
+<h3>Filo</h3>
+<p>Reina filolial con gran velocidad y fuerza.</p>
+</div>
+</div>
+
+<div class="card" data-name="melty">
+<img src="imagenes/melty.jpg">
+<div class="info">
+<h3>Melty Q Melromarc</h3>
+<p>Princesa y aliada de Naofumi.</p>
+</div>
+</div>
+
+<div class="card" data-name="glass">
+<img src="imagenes/glass.jpg">
+<div class="info">
+<h3>Glass</h3>
+<p>Guerrera poderosa proveniente de otro mundo.</p>
+</div>
+</div>
+
+<div class="card" data-name="lark">
+<img src="imagenes/lark.jpg">
+<div class="info">
+<h3>L'Arc Berg</h3>
+<p>Héroe de otro mundo y aliado importante.</p>
+</div>
+</div>
+
+<div class="card" data-name="therese">
+<img src="imagenes/therese.jpg">
+<div class="info">
+<h3>Therese Alexanderite</h3>
+<p>Compañera de L'Arc y usuaria de magia.</p>
+</div>
+</div>
+
+<div class="card" data-name="ren">
+<img src="imagenes/ren.jpg">
+<div class="info">
+<h3>Ren Amaki</h3>
+<p>Héroe de la Espada.</p>
+</div>
+</div>
+
+<div class="card" data-name="motoyasu">
+<img src="imagenes/motoyasu.jpg">
+<div class="info">
+<h3>Motoyasu Kitamura</h3>
+<p>Héroe de la Lanza.</p>
+</div>
+</div>
+
+<div class="card" data-name="itsuki">
+<img src="imagenes/itsuki.jpg">
+<div class="info">
+<h3>Itsuki Kawasumi</h3>
+<p>Héroe del Arco.</p>
+</div>
+</div>
+
+<div class="card" data-name="rishia">
+<img src="imagenes/rishia.jpg">
+<div class="info">
+<h3>Rishia Ivyred</h3>
+<p>Aliada de Naofumi con gran potencial.</p>
+</div>
+</div>
+
+<div class="card" data-name="sadeena">
+<img src="imagenes/sadeena.jpg">
+<div class="info">
+<h3>Sadeena</h3>
+<p>Guerrera poderosa y protectora de Raphtalia.</p>
+</div>
+</div>
+
+<div class="card" data-name="atla">
+<img src="imagenes/atla.jpg">
+<div class="info">
+<h3>Atla</h3>
+<p>Guerrera talentosa muy cercana a Naofumi.</p>
+</div>
+</div>
+
+<div class="card" data-name="ost">
+<img src="imagenes/ost.jpg">
+<div class="info">
+<h3>Ost Horai</h3>
+<p>Personaje relacionado con la Tortuga Espiritual.</p>
+</div>
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<h2 id="titulo"></h2>
+
+<p id="descripcion"></p>
+
+<button onclick="cerrarPopup()">
+Cerrar
+</button>
+
+</div>
+
+</div>
+
+<audio
+id="clickSound"
+src="sonidos/WhatsApp Audio 2026-05-04 at 10.25.34 PM.mpeg">
+</audio>
+
+<script src="javascrip/tate.js"></script>
+
+<br><br>
+
+<a href="tatenoyuusha.php">
+
+<button>
+🛡️ ⬅ Volver
+</button>
+
+</a>
+
+<br><br>
+
+</body>
+
+</html>

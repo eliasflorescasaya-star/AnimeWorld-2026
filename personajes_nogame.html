@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Personajes de No Game No Life</title>
+
+<link rel="icon" href="imagenes/nogame.jpg">
+
+<style>
+
+body{
+    margin:0;
+    background:linear-gradient(rgba(0,0,0,0.82), #3b0764);
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:#f472b6;
+    text-shadow:
+    0 0 10px #ec4899,
+    0 0 20px #8b5cf6;
+}
+
+input{
+    padding:12px;
+    width:270px;
+    border-radius:15px;
+    border:none;
+    margin:20px;
+    font-size:16px;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    padding:20px;
+}
+
+.card{
+    background:#111;
+    width:230px;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:scale(1.08);
+    box-shadow:
+    0 0 15px #ec4899,
+    0 0 25px #8b5cf6;
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.info{
+    padding:10px;
+}
+
+.info h3{
+    color:#c084fc;
+}
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.88);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.popup-content{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    width:350px;
+    border:2px solid #ec4899;
+    box-shadow:
+    0 0 15px #ec4899,
+    0 0 25px #8b5cf6;
+}
+
+.popup-content h2{
+    color:#c084fc;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(45deg,#8b5cf6,#ec4899);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px #ec4899;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+🎮 Personajes de No Game No Life 🎮
+</h1>
+
+<input
+type="text"
+id="buscador"
+placeholder="🔎 Buscar personaje...">
+
+<div class="contenedor">
+
+<div class="card" data-name="sora">
+<img src="imagenes/sora.jpg">
+<div class="info">
+<h3>Sora</h3>
+<p>Genio estratega y experto en leer a sus oponentes.</p>
+</div>
+</div>
+
+<div class="card" data-name="shiro">
+<img src="imagenes/shiro.jpg">
+<div class="info">
+<h3>Shiro</h3>
+<p>Genio de la lógica, cálculo y juegos complejos.</p>
+</div>
+</div>
+
+<div class="card" data-name="stephanie">
+<img src="imagenes/stephanie.jpg">
+<div class="info">
+<h3>Stephanie Dola</h3>
+<p>Princesa de Elkia y aliada de Blank.</p>
+</div>
+</div>
+
+<div class="card" data-name="jibril">
+<img src="imagenes/jibril.jpg">
+<div class="info">
+<h3>Jibril</h3>
+<p>Flügel extremadamente poderosa e inteligente.</p>
+</div>
+</div>
+
+<div class="card" data-name="izuna">
+<img src="imagenes/izuna.jpg">
+<div class="info">
+<h3>Izuna Hatsuse</h3>
+<p>Werebeast con enormes habilidades en los juegos.</p>
+</div>
+</div>
+
+<div class="card" data-name="tet">
+<img src="imagenes/tet.jpg">
+<div class="info">
+<h3>Tet</h3>
+<p>Dios de los juegos y gobernante de Disboard.</p>
+</div>
+</div>
+
+<div class="card" data-name="kurami">
+<img src="imagenes/kurami.jpg">
+<div class="info">
+<h3>Kurami Zell</h3>
+<p>Jugadora inteligente y antigua rival de Sora.</p>
+</div>
+</div>
+
+<div class="card" data-name="feel">
+<img src="imagenes/feel.jpg">
+<div class="info">
+<h3>Feel Nilvalen</h3>
+<p>Elfa poderosa y aliada cercana de Kurami.</p>
+</div>
+</div>
+
+<div class="card" data-name="plum">
+<img src="imagenes/plum.jpg">
+<div class="info">
+<h3>Plum</h3>
+<p>Dhampir con conocimientos y habilidades especiales.</p>
+</div>
+</div>
+
+<div class="card" data-name="chlammy">
+<img src="imagenes/chlammy.jpg">
+<div class="info">
+<h3>Chlammy Zell</h3>
+<p>Competidora estratégica del reino de Elkia.</p>
+</div>
+</div>
+
+<div class="card" data-name="miko">
+<img src="imagenes/miko.jpg">
+<div class="info">
+<h3>Miko</h3>
+<p>Líder espiritual de los Werebeasts.</p>
+</div>
+</div>
+
+<div class="card" data-name="azriel">
+<img src="imagenes/azriel.jpg">
+<div class="info">
+<h3>Azriel</h3>
+<p>Una de las Flügel más poderosas.</p>
+</div>
+</div>
+
+<div class="card" data-name="laila">
+<img src="imagenes/laila.jpg">
+<div class="info">
+<h3>Laila Lorelei</h3>
+<p>Sirena importante dentro de Disboard.</p>
+</div>
+</div>
+
+<div class="card" data-name="foxy">
+<img src="imagenes/foxy.jpg">
+<div class="info">
+<h3>Foxy</h3>
+<p>Personaje relacionado con los Werebeasts.</p>
+</div>
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<h2 id="titulo"></h2>
+
+<p id="descripcion"></p>
+
+<button onclick="cerrarPopup()">
+Cerrar
+</button>
+
+</div>
+
+</div>
+
+<audio
+id="clickSound"
+src="sonidos/WhatsApp Audio 2026-05-04 at 10.25.34 PM.mpeg">
+</audio>
+
+<script src="javascrip/nogame.js"></script>
+
+<br><br>
+
+<a href="nogame.php">
+
+<button>
+🎮 ⬅ Volver
+</button>
+
+</a>
+
+<br><br>
+
+</body>
+
+</html>

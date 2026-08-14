@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Personajes de Bleach</title>
+
+<link rel="icon" href="imagenes/bleach.jpg">
+
+<style>
+
+body{
+    margin:0;
+    background:linear-gradient(rgba(0,0,0,0.80), #4a1d00);
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:#ff7a00;
+    text-shadow:0 0 15px #ff7a00;
+}
+
+input{
+    padding:12px;
+    width:270px;
+    border-radius:15px;
+    border:none;
+    margin:20px;
+    font-size:16px;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    padding:20px;
+}
+
+.card{
+    background:#111;
+    width:230px;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:scale(1.08);
+    box-shadow:0px 0px 25px #ff7a00;
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.info{
+    padding:10px;
+}
+
+.info h3{
+    color:#ffd000;
+}
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.popup-content{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    width:350px;
+    border:2px solid #ff7a00;
+    box-shadow:0 0 25px #ff7a00;
+}
+
+.popup-content h2{
+    color:#ffd000;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(45deg,#ff7a00,#ffd000);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px #ff7a00;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+⚔️ Personajes de Bleach ⚔️
+</h1>
+
+<input
+type="text"
+id="buscador"
+placeholder="🔎 Buscar personaje...">
+
+<div class="contenedor">
+
+<div class="card" data-name="ichigo">
+<img src="imagenes/ichigo.jpg">
+<div class="info">
+<h3>Ichigo Kurosaki</h3>
+<p>Shinigami sustituto y protagonista principal.</p>
+</div>
+</div>
+
+<div class="card" data-name="rukia">
+<img src="imagenes/rukia.jpg">
+<div class="info">
+<h3>Rukia Kuchiki</h3>
+<p>Shinigami que cambia la vida de Ichigo.</p>
+</div>
+</div>
+
+<div class="card" data-name="orihime">
+<img src="imagenes/orihime.jpg">
+<div class="info">
+<h3>Orihime Inoue</h3>
+<p>Amiga de Ichigo con poderes especiales.</p>
+</div>
+</div>
+
+<div class="card" data-name="uryu">
+<img src="imagenes/uryu.jpg">
+<div class="info">
+<h3>Uryū Ishida</h3>
+<p>Quincy orgulloso y gran arquero espiritual.</p>
+</div>
+</div>
+
+<div class="card" data-name="renji">
+<img src="imagenes/renji.jpg">
+<div class="info">
+<h3>Renji Abarai</h3>
+<p>Teniente y amigo cercano de Rukia.</p>
+</div>
+</div>
+
+<div class="card" data-name="byakuya">
+<img src="imagenes/byakuya.jpg">
+<div class="info">
+<h3>Byakuya Kuchiki</h3>
+<p>Capitán noble y poderoso.</p>
+</div>
+</div>
+
+<div class="card" data-name="kenpachi">
+<img src="imagenes/kenpachi.jpg">
+<div class="info">
+<h3>Kenpachi Zaraki</h3>
+<p>Capitán que vive para las batallas.</p>
+</div>
+</div>
+
+<div class="card" data-name="aizen">
+<img src="imagenes/aizen.jpg">
+<div class="info">
+<h3>Sōsuke Aizen</h3>
+<p>Genio manipulador y poderoso antagonista.</p>
+</div>
+</div>
+
+<div class="card" data-name="hitsugaya">
+<img src="imagenes/hitsugaya.jpg">
+<div class="info">
+<h3>Tōshirō Hitsugaya</h3>
+<p>Joven capitán experto en hielo.</p>
+</div>
+</div>
+
+<div class="card" data-name="yoruichi">
+<img src="imagenes/yoruichi.jpg">
+<div class="info">
+<h3>Yoruichi Shihōin</h3>
+<p>Experta en velocidad y combate cuerpo a cuerpo.</p>
+</div>
+</div>
+
+<div class="card" data-name="urahara">
+<img src="imagenes/urahara.jpg">
+<div class="info">
+<h3>Kisuke Urahara</h3>
+<p>Inventor brillante y antiguo capitán.</p>
+</div>
+</div>
+
+<div class="card" data-name="grimmjow">
+<img src="imagenes/grimmjow.jpg">
+<div class="info">
+<h3>Grimmjow Jaegerjaquez</h3>
+<p>Arrancar feroz y rival de Ichigo.</p>
+</div>
+</div>
+
+<div class="card" data-name="ulquiorra">
+<img src="imagenes/ulquiorra.jpg">
+<div class="info">
+<h3>Ulquiorra Cifer</h3>
+<p>Espada frío y extremadamente poderoso.</p>
+</div>
+</div>
+
+<div class="card" data-name="yhwach">
+<img src="imagenes/yhwach.jpg">
+<div class="info">
+<h3>Yhwach</h3>
+<p>Rey Quincy y enemigo central de la guerra final.</p>
+</div>
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<h2 id="titulo"></h2>
+
+<p id="descripcion"></p>
+
+<button onclick="cerrarPopup()">
+Cerrar
+</button>
+
+</div>
+
+</div>
+
+<audio
+id="clickSound"
+src="sonidos/WhatsApp Audio 2026-05-04 at 10.25.34 PM.mpeg">
+</audio>
+
+<script src="javascrip/bleach.js"></script>
+
+<br><br>
+
+<a href="bleach.php">
+
+<button>
+⚔️ ⬅ Volver
+</button>
+
+</a>
+
+<br><br>
+
+</body>
+
+</html>

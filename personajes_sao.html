@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Personajes de Sword Art Online</title>
+
+<link rel="icon" href="imagenes/sao.jpg">
+
+<style>
+
+body{
+    margin:0;
+    background:linear-gradient(rgba(0,0,0,0.80), #0f172a);
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:#60a5fa;
+    text-shadow:0 0 15px #2563eb;
+}
+
+input{
+    padding:12px;
+    width:270px;
+    border-radius:15px;
+    border:none;
+    margin:20px;
+    font-size:16px;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    padding:20px;
+}
+
+.card{
+    background:#111;
+    width:230px;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:scale(1.08);
+    box-shadow:0px 0px 25px #60a5fa;
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.info{
+    padding:10px;
+}
+
+.info h3{
+    color:#93c5fd;
+}
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.popup-content{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    width:350px;
+    border:2px solid #60a5fa;
+    box-shadow:0 0 25px #2563eb;
+}
+
+.popup-content h2{
+    color:#93c5fd;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(45deg,#2563eb,#60a5fa);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px #60a5fa;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+🗡️ Personajes de Sword Art Online 🗡️
+</h1>
+
+<input
+type="text"
+id="buscador"
+placeholder="🔎 Buscar personaje...">
+
+<div class="contenedor">
+
+<div class="card" data-name="kirito">
+<img src="imagenes/kirito.jpg">
+<div class="info">
+<h3>Kirito</h3>
+<p>Espadachín negro y protagonista principal.</p>
+</div>
+</div>
+
+<div class="card" data-name="asuna">
+<img src="imagenes/asuna.jpg">
+<div class="info">
+<h3>Asuna Yuuki</h3>
+<p>Espadachina veloz y compañera de Kirito.</p>
+</div>
+</div>
+
+<div class="card" data-name="alice">
+<img src="imagenes/alice.jpg">
+<div class="info">
+<h3>Alice Zuberg</h3>
+<p>Caballera de Integridad del Underworld.</p>
+</div>
+</div>
+
+<div class="card" data-name="sinon">
+<img src="imagenes/sinon.jpg">
+<div class="info">
+<h3>Sinon</h3>
+<p>Especialista en combate a distancia.</p>
+</div>
+</div>
+
+<div class="card" data-name="eugeo">
+<img src="imagenes/eugeo.jpg">
+<div class="info">
+<h3>Eugeo</h3>
+<p>Gran amigo y compañero de Kirito.</p>
+</div>
+</div>
+
+<div class="card" data-name="leafa">
+<img src="imagenes/leafa.jpg">
+<div class="info">
+<h3>Leafa</h3>
+<p>Guerrera de Alfheim y hermana de Kirito.</p>
+</div>
+</div>
+
+<div class="card" data-name="klein">
+<img src="imagenes/klein.jpg">
+<div class="info">
+<h3>Klein</h3>
+<p>Amigo leal de Kirito desde Aincrad.</p>
+</div>
+</div>
+
+<div class="card" data-name="agil">
+<img src="imagenes/agil.jpg">
+<div class="info">
+<h3>Agil</h3>
+<p>Jugador veterano y comerciante.</p>
+</div>
+</div>
+
+<div class="card" data-name="silica">
+<img src="imagenes/silica.jpg">
+<div class="info">
+<h3>Silica</h3>
+<p>Domadora de bestias y amiga del grupo.</p>
+</div>
+</div>
+
+<div class="card" data-name="lisbeth">
+<img src="imagenes/lisbeth.jpg">
+<div class="info">
+<h3>Lisbeth</h3>
+<p>Herrera y amiga cercana de Asuna.</p>
+</div>
+</div>
+
+<div class="card" data-name="yui">
+<img src="imagenes/yui.jpg">
+<div class="info">
+<h3>Yui</h3>
+<p>Inteligencia artificial cercana a Kirito y Asuna.</p>
+</div>
+</div>
+
+<div class="card" data-name="yuuki">
+<img src="imagenes/yuuki.jpg">
+<div class="info">
+<h3>Yuuki Konno</h3>
+<p>Espadachina excepcional conocida como Zekken.</p>
+</div>
+</div>
+
+<div class="card" data-name="administrator">
+<img src="imagenes/administrator.jpg">
+<div class="info">
+<h3>Administrator</h3>
+<p>Poderosa gobernante del Underworld.</p>
+</div>
+</div>
+
+<div class="card" data-name="heathcliff">
+<img src="imagenes/heathcliff.jpg">
+<div class="info">
+<h3>Heathcliff</h3>
+<p>Líder de los Caballeros de la Sangre.</p>
+</div>
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<h2 id="titulo"></h2>
+
+<p id="descripcion"></p>
+
+<button onclick="cerrarPopup()">
+Cerrar
+</button>
+
+</div>
+
+</div>
+
+<audio
+id="clickSound"
+src="sonidos/WhatsApp Audio 2026-05-04 at 10.25.34 PM.mpeg">
+</audio>
+
+<script src="javascrip/sao.js"></script>
+
+<br><br>
+
+<a href="sao.php">
+
+<button>
+🗡️ ⬅ Volver
+</button>
+
+</a>
+
+<br><br>
+
+</body>
+
+</html>

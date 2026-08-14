@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Personajes de Nazo no Kanojo X</title>
+
+<link rel="icon" href="imagenes/nazo.jpg">
+
+<style>
+
+body{
+    margin:0;
+    background:linear-gradient(rgba(0,0,0,0.82), #3b0764);
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+}
+
+h1{
+    color:#f0abfc;
+    text-shadow:0 0 15px #a855f7;
+}
+
+input{
+    padding:12px;
+    width:270px;
+    border-radius:15px;
+    border:none;
+    margin:20px;
+    font-size:16px;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    padding:20px;
+}
+
+.card{
+    background:#111;
+    width:230px;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:scale(1.08);
+    box-shadow:0px 0px 25px #a855f7;
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.info{
+    padding:10px;
+}
+
+.info h3{
+    color:#f0abfc;
+}
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.popup-content{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    width:350px;
+    border:2px solid #a855f7;
+    box-shadow:0 0 25px #a855f7;
+}
+
+.popup-content h2{
+    color:#f0abfc;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(45deg,#7e22ce,#e879f9);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px #a855f7;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+💜 Personajes de Nazo no Kanojo X 💜
+</h1>
+
+<input
+type="text"
+id="buscador"
+placeholder="🔎 Buscar personaje...">
+
+<div class="contenedor">
+
+<div class="card" data-name="urabe">
+<img src="imagenes/urabe.jpg">
+<div class="info">
+<h3>Mikoto Urabe</h3>
+<p>Chica misteriosa y protagonista femenina.</p>
+</div>
+</div>
+
+<div class="card" data-name="tsubaki">
+<img src="imagenes/tsubaki.jpg">
+<div class="info">
+<h3>Akira Tsubaki</h3>
+<p>Protagonista y novio de Urabe.</p>
+</div>
+</div>
+
+<div class="card" data-name="oka">
+<img src="imagenes/oka.jpg">
+<div class="info">
+<h3>Ayuko Oka</h3>
+<p>Amiga cercana de Urabe.</p>
+</div>
+</div>
+
+<div class="card" data-name="ueno">
+<img src="imagenes/ueno.jpg">
+<div class="info">
+<h3>Kōhei Ueno</h3>
+<p>Amigo de Tsubaki y novio de Oka.</p>
+</div>
+</div>
+
+<div class="card" data-name="youko">
+<img src="imagenes/youko.jpg">
+<div class="info">
+<h3>Yōko Tsubaki</h3>
+<p>Hermana mayor de Akira.</p>
+</div>
+</div>
+
+<div class="card" data-name="hayakawa">
+<img src="imagenes/hayakawa.jpg">
+<div class="info">
+<h3>Aika Hayakawa</h3>
+<p>Antigua compañera de Tsubaki.</p>
+</div>
+</div>
+
+<div class="card" data-name="momoka">
+<img src="imagenes/momoka.jpg">
+<div class="info">
+<h3>Momoka Imai</h3>
+<p>Personaje relacionado con Urabe.</p>
+</div>
+</div>
+
+<div class="card" data-name="matsuzawa">
+<img src="imagenes/matsuzawa.jpg">
+<div class="info">
+<h3>Masaki Matsuzawa</h3>
+<p>Compañero de escuela de Tsubaki.</p>
+</div>
+</div>
+
+<div class="card" data-name="nakajima">
+<img src="imagenes/nakajima.jpg">
+<div class="info">
+<h3>Nakajima</h3>
+<p>Estudiante de la escuela.</p>
+</div>
+</div>
+
+<div class="card" data-name="miyajima">
+<img src="imagenes/miyajima.jpg">
+<div class="info">
+<h3>Miyajima</h3>
+<p>Personaje secundario del entorno escolar.</p>
+</div>
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<h2 id="titulo"></h2>
+
+<p id="descripcion"></p>
+
+<button onclick="cerrarPopup()">
+Cerrar
+</button>
+
+</div>
+
+</div>
+
+<audio
+id="clickSound"
+src="sonidos/WhatsApp Audio 2026-05-04 at 10.25.34 PM.mpeg">
+</audio>
+
+<script src="javascrip/nazo.js"></script>
+
+<br><br>
+
+<a href="nazo.php">
+
+<button>
+💜 ⬅ Volver
+</button>
+
+</a>
+
+<br><br>
+
+</body>
+
+</html>

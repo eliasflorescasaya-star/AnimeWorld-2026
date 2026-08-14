@@ -10,7 +10,7 @@ session_start();
 <title>Bleach - Historia</title>
 
 <link rel="icon" href="imagenes/bleach.jpg">
-<link rel="stylesheet" href="css/bleach.css?v=1">
+<link rel="stylesheet" href="css/bleach.css?v=2">
 </head>
 
 <body>
@@ -179,14 +179,14 @@ el sacrificio y la lucha contra enemigos espirituales.
 <td>
 <h3>📚 Manga</h3>
 <a href="manga_bleach.php">
-<img src="imagenes/ichigo.jpg" width="250" height="180">
+<img src="imagenes/ichigok.jpg" width="250" height="180">
 </a>
 </td>
 
 <td>
 <h3>🖼 Imágenes y GIFs</h3>
 <a href="imagenes_bleach.html">
-<img src="imagenes/bleach.jpg" width="250" height="180">
+<img src="imagenes/ichigok1.jpg" width="250" height="180">
 </a>
 </td>
 
@@ -197,7 +197,7 @@ el sacrificio y la lucha contra enemigos espirituales.
 <td>
 <h3>👥 Personajes</h3>
 <a href="personajes_bleach.html">
-<img src="imagenes/aizen.jpg" width="250" height="180">
+<img src="imagenes/ichigok2.jpg" width="250" height="180">
 </a>
 </td>
 

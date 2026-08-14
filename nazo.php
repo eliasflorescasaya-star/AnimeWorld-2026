@@ -10,7 +10,7 @@ session_start();
 <title>Nazo no Kanojo X - Historia</title>
 
 <link rel="icon" href="imagenes/nazo.jpg">
-<link rel="stylesheet" href="css/nazo.css?v=1">
+<link rel="stylesheet" href="css/nazo.css?v=3">
 </head>
 
 <body>
@@ -181,14 +181,14 @@ el romance escolar y las formas diferentes de expresar sentimientos.
 <td>
 <h3>📚 Manga</h3>
 <a href="manga_nazo.php">
-<img src="imagenes/urabe.jpg" width="250" height="180">
+<img src="imagenes/nazo1.jpg" width="250" height="180">
 </a>
 </td>
 
 <td>
 <h3>🖼 Imágenes y GIFs</h3>
 <a href="imagenes_nazo.html">
-<img src="imagenes/nazo.jpg" width="250" height="180">
+<img src="imagenes/nazo2.jpg" width="250" height="180">
 </a>
 </td>
 
@@ -199,7 +199,7 @@ el romance escolar y las formas diferentes de expresar sentimientos.
 <td>
 <h3>👥 Personajes</h3>
 <a href="personajes_nazo.html">
-<img src="imagenes/tsubaki.jpg" width="250" height="180">
+<img src="imagenes/nazo3.jpg" width="250" height="180">
 </a>
 </td>
 
