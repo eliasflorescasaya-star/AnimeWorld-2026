@@ -1,0 +1,424 @@
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+
+    font-family:Arial, sans-serif;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.85)
+    ),
+    url("../imagenes/fondo.jpg")
+    center/cover fixed;
+
+    color:white;
+
+    min-height:100vh;
+}
+
+
+.contenedor-perfil{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    flex-direction:column;
+
+    padding:40px 20px;
+
+}
+
+
+.contenedor-perfil > h1{
+
+    font-size:45px;
+
+    margin-bottom:30px;
+
+    color:#f472b6;
+
+    text-align:center;
+
+    text-shadow:
+    0 0 10px #ec4899,
+    0 0 20px #9333ea,
+    0 0 30px #7c3aed;
+
+}
+
+
+.tarjeta-perfil{
+
+    width:90%;
+    max-width:750px;
+
+    padding:35px;
+
+    text-align:center;
+
+    background:rgba(10,10,20,0.82);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:25px;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 0 20px rgba(236,72,153,0.4),
+    0 0 40px rgba(124,58,237,0.25);
+
+}
+
+
+.avatar{
+
+    display:flex;
+    justify-content:center;
+
+    margin-bottom:20px;
+
+}
+
+.avatar img{
+
+    width:180px;
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:4px solid #ec4899;
+
+    box-shadow:
+    0 0 15px #ec4899,
+    0 0 30px #7c3aed;
+
+    transition:0.3s;
+
+}
+
+.avatar img:hover{
+
+    transform:scale(1.08);
+
+    box-shadow:
+    0 0 25px #ec4899,
+    0 0 45px #7c3aed;
+
+}
+
+
+
+.tarjeta-perfil h2{
+
+    color:#f9a8d4;
+
+    font-size:30px;
+
+    margin-bottom:10px;
+
+}
+
+.bienvenida{
+
+    color:#ddd;
+
+    font-size:18px;
+
+}
+
+
+hr{
+
+    border:none;
+
+    height:1px;
+
+    background:linear-gradient(
+        to right,
+        transparent,
+        #ec4899,
+        #8b5cf6,
+        transparent
+    );
+
+    margin:30px 0;
+
+}
+
+
+
+.datos{
+
+    background:rgba(255,255,255,0.06);
+
+    padding:20px;
+
+    border-radius:15px;
+
+    text-align:left;
+
+}
+
+.datos h3{
+
+    text-align:center;
+
+    color:#c084fc;
+
+    font-size:22px;
+
+}
+
+.datos p{
+
+    font-size:17px;
+
+    margin:15px 0;
+
+}
+
+
+.opciones{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:18px;
+
+    margin-top:25px;
+
+}
+
+.opciones a{
+
+    text-decoration:none;
+
+}
+
+
+button{
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:15px 25px;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+
+}
+
+button:hover{
+
+    transform:translateY(-4px) scale(1.03);
+
+}
+
+
+.favoritos{
+
+    width:100%;
+
+    background:
+    linear-gradient(
+        45deg,
+        #be123c,
+        #f43f5e
+    );
+
+}
+
+.favoritos:hover{
+
+    box-shadow:
+    0 0 20px #f43f5e;
+
+}
+
+
+.valoraciones{
+
+    width:100%;
+
+    background:
+    linear-gradient(
+        45deg,
+        #ca8a04,
+        #facc15
+    );
+
+}
+
+.valoraciones:hover{
+
+    box-shadow:
+    0 0 20px #facc15;
+
+}
+
+
+.comentarios{
+
+    width:100%;
+
+    background:
+    linear-gradient(
+        45deg,
+        #2563eb,
+        #38bdf8
+    );
+
+}
+
+.comentarios:hover{
+
+    box-shadow:
+    0 0 20px #38bdf8;
+
+}
+
+
+.ranking{
+
+    width:100%;
+
+    background:
+    linear-gradient(
+        45deg,
+        #7e22ce,
+        #d946ef
+    );
+
+}
+
+.ranking:hover{
+
+    box-shadow:
+    0 0 20px #d946ef;
+
+}
+
+
+
+.volver{
+
+    background:
+    linear-gradient(
+        45deg,
+        #0891b2,
+        #22d3ee
+    );
+
+}
+
+.volver:hover{
+
+    box-shadow:
+    0 0 20px #22d3ee;
+
+}
+
+
+
+.cerrar{
+
+    background:
+    linear-gradient(
+        45deg,
+        #991b1b,
+        #ef4444
+    );
+
+}
+
+.cerrar:hover{
+
+    box-shadow:
+    0 0 20px #ef4444;
+
+}
+
+
+
+a{
+
+    text-decoration:none;
+
+}
+
+
+
+@media(max-width:600px){
+
+    .contenedor-perfil{
+
+        padding:20px 10px;
+
+    }
+
+    .contenedor-perfil > h1{
+
+        font-size:32px;
+
+    }
+
+    .tarjeta-perfil{
+
+        width:100%;
+
+        padding:20px;
+
+    }
+
+    .avatar img{
+
+        width:140px;
+        height:140px;
+
+    }
+
+    .tarjeta-perfil h2{
+
+        font-size:25px;
+
+    }
+
+    .opciones{
+
+        grid-template-columns:1fr;
+
+    }
+
+    button{
+
+        width:100%;
+
+        font-size:16px;
+
+    }
+
+}

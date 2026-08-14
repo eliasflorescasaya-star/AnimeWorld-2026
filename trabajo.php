@@ -32,9 +32,41 @@ color:white;
 margin-bottom:10px;
 ">
 
-👋 Bienvenido <?php echo $_SESSION["usuario"]; ?>
+👋 Bienvenido <?php echo htmlspecialchars($_SESSION["usuario"]); ?>
 
 </h3>
+
+<div style="
+display:flex;
+gap:10px;
+justify-content:center;
+flex-wrap:wrap;
+">
+
+<a href="perfil.php">
+
+<button
+onmouseover="this.style.transform='scale(1.1)'"
+onmouseout="this.style.transform='scale(1)'"
+
+style="
+padding:12px 20px;
+border:none;
+border-radius:25px;
+background:linear-gradient(45deg,#8b5cf6,#ec4899);
+color:white;
+font-size:16px;
+cursor:pointer;
+box-shadow:0px 0px 15px #ec4899;
+transition:0.4s;
+">
+
+👤 Mi perfil
+
+</button>
+
+</a>
+
 
 <a href="php/cerrarsesion.php">
 
@@ -59,6 +91,8 @@ transition:0.4s;
 </button>
 
 </a>
+
+</div>
 
 <?php }else{ ?>
 
