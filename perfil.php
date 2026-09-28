@@ -77,9 +77,7 @@ $foto = $datosUsuario["foto"] ?? "avatar.jpg";
 <div class="tarjeta-perfil">
 
 
-<!-- =========================
-     FOTO DE PERFIL
-========================= -->
+
 
 <div class="avatar">
 
@@ -90,9 +88,7 @@ alt="Foto de perfil">
 </div>
 
 
-<!-- =========================
-     CAMBIAR FOTO
-========================= -->
+
 
 <form
 action="php/subirfoto.php"
@@ -120,9 +116,7 @@ value="Subir foto">
 </form>
 
 
-<!-- =========================
-     USUARIO
-========================= -->
+
 
 <h2>
 
@@ -139,9 +133,7 @@ Bienvenido a tu perfil de Anime World 🌸
 <hr>
 
 
-<!-- =========================
-     DATOS DE LA CUENTA
-========================= -->
+
 
 <div class="datos">
 
@@ -170,9 +162,7 @@ Bienvenido a tu perfil de Anime World 🌸
 <hr>
 
 
-<!-- =========================
-     ACTIVIDAD
-========================= -->
+
 
 <h2>
 🌸 Mi actividad
@@ -230,9 +220,7 @@ Bienvenido a tu perfil de Anime World 🌸
 <hr>
 
 
-<!-- =========================
-     ANIME WORLD
-========================= -->
+
 
 <h2>
 🎌 Anime World

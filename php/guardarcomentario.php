@@ -139,25 +139,24 @@ $contador=1;
 
 while($fila=$resultado->fetch_assoc()){
 
-echo "
+    echo "
+    <tr>
 
-<tr>
+    <td>$contador</td>
 
-<td>$contador</td>
+    <td>".htmlspecialchars($fila['nombre'], ENT_QUOTES, 'UTF-8')."</td>
 
-<td>".$fila['nombre']."</td>
+    <td>".htmlspecialchars($fila['anime'], ENT_QUOTES, 'UTF-8')."</td>
 
-<td>".$fila['anime']."</td>
+    <td>".htmlspecialchars($fila['personaje'], ENT_QUOTES, 'UTF-8')."</td>
 
-<td>".$fila['personaje']."</td>
+    <td>".htmlspecialchars($fila['comentario'], ENT_QUOTES, 'UTF-8')."</td>
 
-<td>".$fila['comentario']."</td>
+    </tr>
+    ";
 
-</tr>
+    $contador++;
 
-";
-
-$contador++;
 
 }
 
