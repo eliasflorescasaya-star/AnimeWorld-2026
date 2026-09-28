@@ -34,33 +34,49 @@ if(isset($_FILES["foto"])){
 
     }
 
-    $permitidos = [
-        "image/jpeg",
-        "image/png",
-        "image/webp"
-    ];
-
-    if(!in_array($archivo["type"], $permitidos)){
-
-        die("Formato no permitido");
-
-    }
-
     if($archivo["size"] > 5 * 1024 * 1024){
 
         die("La imagen es demasiado grande");
 
     }
 
-    $extension = pathinfo(
-        $archivo["name"],
-        PATHINFO_EXTENSION
+    
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+
+    $tipoReal = finfo_file(
+        $finfo,
+        $archivo["tmp_name"]
     );
+
+    finfo_close($finfo);
+
+    $permitidos = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+    if(!in_array($tipoReal, $permitidos, true)){
+
+        die("Formato no permitido");
+
+    }
+
+   
+    if($tipoReal == "image/jpeg"){
+        $extension = "jpg";
+    }elseif($tipoReal == "image/png"){
+        $extension = "png";
+    }elseif($tipoReal == "image/webp"){
+        $extension = "webp";
+    }else{
+        die("Formato no válido");
+    }
 
     $nombreNuevo =
         uniqid("perfil_", true)
         . "."
-        . strtolower($extension);
+        . $extension;
 
     $ruta =
         "../imagenes/perfiles/"
@@ -87,6 +103,8 @@ if(isset($_FILES["foto"])){
 
         $stmt->execute();
 
+        $stmt->close();
+
         header(
             "Location: ../perfil.php"
         );
@@ -100,5 +118,7 @@ if(isset($_FILES["foto"])){
     }
 
 }
+
+$conexion->close();
 
 ?>
