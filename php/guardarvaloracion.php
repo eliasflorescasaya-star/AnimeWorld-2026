@@ -45,7 +45,7 @@ $paginasPermitidas = [
     "../nogame.php",
     "../sao.php",
     "../solo_leveling.php",
-    "../tatenoyuusha.php"
+    "../tatenoyuusha.php",
     "../akame.php"
 ];
 
