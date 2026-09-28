@@ -2,9 +2,7 @@
 
 session_start();
 
-/* =========================
-   VERIFICAR SESIÓN
-========================= */
+
 
 if(!isset($_SESSION["usuario"])){
 
@@ -16,9 +14,7 @@ if(!isset($_SESSION["usuario"])){
 $usuario = $_SESSION["usuario"];
 
 
-/* =========================
-   CONEXIÓN A LA BASE DE DATOS
-========================= */
+
 
 $conexion = new mysqli(
     "localhost",
@@ -34,9 +30,7 @@ if($conexion->connect_error){
 }
 
 
-/* =========================
-   OBTENER FOTO DEL USUARIO
-========================= */
+
 
 $sql = "SELECT foto FROM usuarios WHERE usuario = ?";
 
@@ -51,9 +45,7 @@ $resultado = $stmt->get_result();
 $datosUsuario = $resultado->fetch_assoc();
 
 
-/* =========================
-   FOTO POR DEFECTO
-========================= */
+
 
 $foto = $datosUsuario["foto"] ?? "avatar.jpg";
 
